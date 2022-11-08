@@ -1,0 +1,2 @@
+The files in this directory are in no way claimed by me or my property (The author Dakota Golightly) they are simply copied from the below website per its permission and stored here for easier reference than opening a window to that website during development.
+https://pythondex.com/
