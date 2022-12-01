@@ -1,18 +1,33 @@
 import turtle 
 window = turtle.Screen()
 window.setup(width=400, height=400)
+
+height = 150
+diagonal = 71
+digit = 1
+
 turtle.mode("logo")
 turtle.penup()
 turtle.goto(0, -100)
 turtle.pendown()
 turtle.setheading(0)
-turtle.forward(150)
+turtle.forward(height)
+if (digit == 100) | (digit == 1000):
+    turtle.penup()
+    turtle.goto(0, -100)
 
 
 #START
 turtle.pendown()
-turtle.setheading(135)
-turtle.forward(71)
+if digit == 1:
+    turtle.setheading(135)
+elif digit == 10:
+    turtle.setheading(225)
+elif digit == 100:
+    turtle.setheading(45)
+elif digit == 1000:
+    turtle.setheading(315)
+turtle.forward(diagonal)
 #END
 
 
