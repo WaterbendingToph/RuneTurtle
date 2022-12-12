@@ -12,6 +12,7 @@ turtle.penup()
 turtle.goto(-10, -125)
 turtle.pendown()
 
+#START
 turtle.begin_fill()
 turtle.setheading(270)
 turtle.forward(lineWidth)
@@ -38,5 +39,6 @@ turtle.forward(diagonal)
 turtle.setheading(180)
 turtle.forward(letterHeight - (lineWidth * 3) - lineWidth - (letterHeight / 4) )
 turtle.end_fill()
+#END
 
 turtle.done()

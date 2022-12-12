@@ -16,6 +16,7 @@ turtle.penup()
 turtle.goto(-10, -125)
 turtle.pendown()
 
+#START
 turtle.begin_fill()
 turtle.setheading(270)
 turtle.forward(lineWidth)
@@ -38,5 +39,6 @@ turtle.forward(lineWidth)
 turtle.setheading(180)
 turtle.forward(outerLine)
 turtle.end_fill()
+#END
 
 turtle.done()
