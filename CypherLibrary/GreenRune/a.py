@@ -2,18 +2,17 @@ import turtle
 window = turtle.Screen()
 window.setup(width = 500, height=500)
 
-letterWidth = 200
 letterHeight = 250
 
 turtle.mode("logo")
 turtle.penup()
-turtle.goto(-10, -125)
+turtle.goto(-125, 125)
 turtle.pendown()
 
 #START
-turtle.begin_fill()
-
-turtle.end_fill()
+turtle.setheading(210)
+turtle.circle(letterHeight / 2, steps=3)
+turtle.setheading(270)
 #END
 
 turtle.done()
