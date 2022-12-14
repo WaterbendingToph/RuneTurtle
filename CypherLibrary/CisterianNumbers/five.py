@@ -9,6 +9,19 @@ digit = 1
 
 turtle.mode("logo")
 turtle.penup()
+turtle.pencolor("red")
+turtle.goto(-200, 50)
+turtle.pendown()
+turtle.setheading(90)
+turtle.forward(400)
+turtle.penup()
+turtle.goto(-200, -100)
+turtle.pendown()
+turtle.setheading(90)
+turtle.forward(400)
+turtle.penup()
+turtle.pencolor("black")
+
 turtle.goto(0, -100)
 turtle.pendown()
 turtle.setheading(0)
@@ -16,6 +29,7 @@ turtle.forward(height)
 if (digit == 100) | (digit == 1000):
     turtle.penup()
     turtle.goto(0, -100)
+    turtle.pendown()
 
 
 #START
