@@ -6,18 +6,33 @@ letterHeight = 250
 
 turtle.mode("logo")
 turtle.penup()
-turtle.goto(-125, 125)
+turtle.pencolor("red")
+turtle.goto(-250, 125)
+turtle.pendown()
+turtle.setheading(90)
+turtle.forward(500)
+turtle.penup()
+turtle.goto(-250, -125)
+turtle.pendown()
+turtle.setheading(90)
+turtle.forward(500)
+turtle.pencolor("black")
+turtle.penup()
+
+turtle.goto(-125, 75)
 turtle.pendown()
 
 #START
 startingPoint = turtle.position()
 turtle.setheading(45)
-turtle.circle(int(-letterHeight * (3 / 5) ), 270, int(letterHeight / 4) )
+turtle.circle(int(-letterHeight * (2 / 5) ), 285, int(letterHeight / 4) )
 turtle.penup()
 turtle.goto(startingPoint)
 turtle.pendown()
 turtle.setheading(37)
-turtle.circle(int(-letterHeight * (7 / 10) ), 285, int(letterHeight / 4) )
+turtle.circle(int(-letterHeight * (1 / 2) ), 302, int(letterHeight / 4) )
+turtle.penup()
+turtle.goto(0, 0)
 #END
 
 turtle.done()

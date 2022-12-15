@@ -4,21 +4,34 @@ window.setup(width = 500, height=500)
 
 letterHeight = 250
 
-diagonalLength = ( ( ( (2 / 3) * letterHeight) ** 2) * 2) ** (0.5)
+diagonalLength = ( ( ( (1 / 3) * letterHeight) ** 2) * 2) ** (0.5) + letterHeight / 4
 
 turtle.mode("logo")
 turtle.penup()
-turtle.goto(125, -125)
+turtle.pencolor("red")
+turtle.goto(-250, 125)
+turtle.pendown()
+turtle.setheading(90)
+turtle.forward(500)
+turtle.penup()
+turtle.goto(-250, -125)
+turtle.pendown()
+turtle.setheading(90)
+turtle.forward(500)
+turtle.pencolor("black")
+turtle.penup()
+
+turtle.goto(150, -25)
 turtle.pendown()
 
 #START
 turtle.setheading(180)
-turtle.circle(int(-letterHeight / 4), 145, int(letterHeight / 4) )
+turtle.circle(int(-letterHeight / 3), 145, int(letterHeight / 4) )
 turtle.setheading(330)
 turtle.forward(diagonalLength / 2)
 horizonatalStartingPoint = turtle.position()
 turtle.forward(diagonalLength / 2)
-turtle.circle(int(letterHeight / 4), 145, int(letterHeight / 4) )
+turtle.circle(int(letterHeight / 3), 145, int(letterHeight / 4) )
 turtle.penup()
 turtle.goto(horizonatalStartingPoint)
 turtle.setheading(90)
