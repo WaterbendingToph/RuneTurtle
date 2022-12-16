@@ -2,6 +2,8 @@ import turtle
 window = turtle.Screen()
 window.setup(width = 200, height = 200)
 
+length = 20
+
 turtle.mode("logo")
 turtle.pencolor("red")
 turtle.penup()
@@ -71,7 +73,47 @@ turtle.penup()
 turtle.pencolor("black")
 
 #START
+turtle.penup()
+turtle.goto(-50,-50)
+turtle.setheading(90)
+turtle.pendown()
+turtle.begin_fill()
+turtle.forward(length * 2)
+turtle.setheading(0)
+turtle.forward(length * 4)
+turtle.setheading(270)
+turtle.forward(length)
+turtle.setheading(180)
+turtle.forward(length * 3)
+turtle.setheading(270)
+turtle.forward(length)
+turtle.setheading(180)
+turtle.forward(length)
+turtle.end_fill()
 
+turtle.penup()
+turtle.goto(30, 30)
+turtle.pendown()
+turtle.begin_fill()
+turtle.setheading(270)
+turtle.forward(length * 2)
+turtle.setheading(0)
+turtle.forward(length)
+turtle.setheading(90)
+turtle.forward(length * 2)
+turtle.setheading(180)
+turtle.forward(length)
+turtle.end_fill()
+
+turtle.begin_fill()
+turtle.forward(length)
+turtle.setheading(90)
+turtle.forward(length)
+turtle.setheading(0)
+turtle.forward(length)
+turtle.setheading(270)
+turtle.forward(length)
+turtle.end_fill()
 
 
 

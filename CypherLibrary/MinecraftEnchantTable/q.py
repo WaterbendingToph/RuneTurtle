@@ -2,6 +2,8 @@ import turtle
 window = turtle.Screen()
 window.setup(width = 200, height = 200)
 
+length = 20
+
 turtle.mode("logo")
 turtle.pencolor("red")
 turtle.penup()
