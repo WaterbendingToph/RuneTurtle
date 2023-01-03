@@ -122,8 +122,6 @@ turtle.forward(length)
 turtle.setheading(270)
 turtle.forward(length)
 turtle.end_fill()
-
-
 #END
 
 turtle.done()

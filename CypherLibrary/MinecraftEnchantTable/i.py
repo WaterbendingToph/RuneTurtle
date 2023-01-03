@@ -77,10 +77,34 @@ turtle.penup()
 turtle.pencolor("black")
 
 #START
+turtle.penup()
+turtle.goto(topLeft)
+turtle.setheading(90)
+turtle.forward(length * 2)
+turtle.pendown()
+turtle.begin_fill()
+turtle.forward(length)
+turtle.setheading(180)
+turtle.forward(length * 2)
+turtle.setheading(270)
+turtle.forward(length)
+turtle.setheading(0)
+turtle.forward(length * 2)
+turtle.end_fill()
 
-
-
-
+turtle.penup()
+turtle.setheading(180)
+turtle.forward(length * 3)
+turtle.pendown()
+turtle.begin_fill()
+turtle.forward(length * 2)
+turtle.setheading(90)
+turtle.forward(length)
+turtle.setheading(0)
+turtle.forward(length * 2)
+turtle.setheading(270)
+turtle.forward(length)
+turtle.end_fill()
 #END
 
 turtle.done()
