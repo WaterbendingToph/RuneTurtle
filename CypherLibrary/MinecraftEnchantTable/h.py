@@ -2,7 +2,11 @@ import turtle
 window = turtle.Screen()
 window.setup(width = 200, height = 200)
 
-length = 20
+length =        20
+bottomLeft =    -50, -50
+bottomRight =   50, -50
+topLeft =       -50, 50
+topRight =      50, 50
 
 turtle.mode("logo")
 turtle.pencolor("red")
