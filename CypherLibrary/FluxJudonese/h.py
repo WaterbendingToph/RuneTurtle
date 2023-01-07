@@ -4,7 +4,7 @@ window.setup(width = 360, height = 360)
 
 length =        40
 ReturnPoint =   0,0
-direction = 1
+direction = 4
 topLeft =       -140, 140
 if direction == 2:
     topLeft =   140, 140
@@ -146,8 +146,58 @@ turtle.pendown()
 turtle.setheading(90)
 turtle.forward(280)
 
-#START
+turtle.pencolor("black")
 
+#START
+turtle.penup()
+turtle.goto(bottomLeft)
+turtle.setheading(up)
+turtle.forward(length * 2)
+turtle.pendown()
+turtle.begin_fill()
+turtle.forward(length)
+turtle.setheading(right)
+turtle.forward(length * 2)
+turtle.setheading(down)
+turtle.forward(length * 3)
+turtle.setheading(left)
+turtle.forward(length)
+turtle.setheading(up)
+turtle.forward(length * 2)
+turtle.setheading(left)
+turtle.forward(length)
+turtle.end_fill()
+
+turtle.penup()
+turtle.setheading(up)
+turtle.forward(length * 2)
+turtle.pendown()
+turtle.begin_fill()
+turtle.forward(length)
+turtle.setheading(right)
+turtle.forward(length)
+turtle.setheading(up)
+turtle.forward(length * 2)
+turtle.setheading(right)
+turtle.forward(length * 3)
+turtle.setheading(down)
+turtle.forward(length * 6)
+turtle.setheading(right)
+turtle.forward(length)
+turtle.setheading(down)
+turtle.forward(length)
+ReturnPoint = turtle.position()
+turtle.setheading(left)
+turtle.forward(length * 2)
+turtle.setheading(up)
+turtle.forward(length * 6)
+turtle.setheading(left)
+turtle.forward(length)
+turtle.setheading(down)
+turtle.forward(length * 2)
+turtle.setheading(left)
+turtle.forward(length * 2)
+turtle.end_fill()
 #END
 
 turtle.done()

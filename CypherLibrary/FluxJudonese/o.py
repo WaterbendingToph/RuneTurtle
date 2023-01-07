@@ -146,8 +146,31 @@ turtle.pendown()
 turtle.setheading(90)
 turtle.forward(280)
 
-#START
+turtle.pencolor("black")
 
+#START
+turtle.penup()
+turtle.goto(bottomLeft)
+turtle.pendown()
+turtle.begin_fill()
+turtle.setheading(up)
+turtle.forward(length * 7)
+turtle.setheading(right)
+turtle.forward(length * 3)
+turtle.setheading(down)
+turtle.forward(length * 7)
+ReturnPoint = turtle.position()
+turtle.setheading(left)
+turtle.forward(length)
+turtle.setheading(up)
+turtle.forward(length * 6)
+turtle.setheading(left)
+turtle.forward(length)
+turtle.setheading(down)
+turtle.forward(length * 6)
+turtle.setheading(left)
+turtle.forward(length)
+turtle.end_fill()
 #END
 
 turtle.done()
