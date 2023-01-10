@@ -3,6 +3,9 @@ window = turtle.Screen()
 window.setup(width = 500, height=500)
 
 letterHeight = 250
+largeSide = int(letterHeight / 2)
+smallerSide = int(letterHeight / 5)
+ReturnPoint = 0,0
 
 turtle.mode("logo")
 turtle.penup()
@@ -33,7 +36,9 @@ turtle.forward(500)
 turtle.pencolor("black")
 turtle.penup()
 
-turtle.goto(-125, 125)
+turtle.goto(-125, -125)
+turtle.setheading(45)
+turtle.forward( ( ( (2 * (letterHeight ** 2) ) ** (0.5) ) / 2) - ( (2 * ( (letterHeight / 4) ** 2) ) ** (0.5) ) )
 turtle.pendown()
 
 #START
