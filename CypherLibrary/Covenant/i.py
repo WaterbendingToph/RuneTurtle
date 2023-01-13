@@ -42,7 +42,31 @@ turtle.forward( ( ( (2 * (letterHeight ** 2) ) ** (0.5) ) / 2) - ( (2 * ( (lette
 turtle.pendown()
 
 #START
+turtle.penup()
+turtle.setheading(45)
+turtle.forward(smallerSide)
+turtle.pendown()
+turtle.begin_fill()
+turtle.setheading(90)
+turtle.forward(smallerSide)
+turtle.setheading(210)
+turtle.forward(smallerSide)
+turtle.setheading(330)
+turtle.forward(smallerSide)
+turtle.end_fill()
 
+turtle.penup()
+turtle.setheading(0)
+turtle.forward(smallerSide / 2)
+turtle.pendown()
+turtle.begin_fill()
+turtle.setheading(90)
+turtle.forward(smallerSide)
+turtle.setheading(330)
+turtle.forward(smallerSide)
+turtle.setheading(210)
+turtle.forward(smallerSide)
+turtle.end_fill()
 #END
 
 turtle.done()
