@@ -42,7 +42,18 @@ turtle.forward( ( ( (2 * (letterHeight ** 2) ) ** (0.5) ) / 2) - ( (2 * ( (lette
 turtle.pendown()
 
 #START
-
+turtle.begin_fill()
+turtle.setheading(90)
+turtle.forward(largeSide)
+turtle.setheading(330)
+turtle.forward(largeSide)
+turtle.setheading(210)
+turtle.forward(largeSide / 4)
+turtle.setheading(120)
+turtle.circle(-largeSide / 4, 180, int(largeSide / 4) )
+turtle.setheading(210)
+turtle.forward(largeSide / 4)
+turtle.end_fill()
 #END
 
 turtle.done()
