@@ -5,6 +5,10 @@ window.setup(width = 600, height=600)
 letterHeight = 400
 lineWidth = 20
 rightWall = 0
+leftX = 0
+leftY = 0
+rightX = 0
+rightY = 0
 
 turtle.mode("logo")
 turtle.penup()
