@@ -85,8 +85,7 @@ while turtle.xcor() > endPointX:
     turtle.forward(1)
 ReturnPoint = turtle.position()
 turtle.setheading(180)
-while turtle.ycor() > initialY:
-    turtle.forward(1)
+turtle.forward(turtle.ycor() - initialY)
 turtle.end_fill()
 
 turtle.penup()
