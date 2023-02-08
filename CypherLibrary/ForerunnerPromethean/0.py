@@ -80,6 +80,7 @@ endPointY = turtle.ycor() - lineWidth
 while turtle.ycor() > endPointY:
     turtle.forward(1)
 horizontalOffset = turtle.xcor() - initialX
+rightWall = turtle.xcor()
 turtle.setheading(270)
 turtle.forward(horizontalOffset + lineWidth + lineWidth)
 turtle.end_fill()

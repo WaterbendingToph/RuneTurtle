@@ -79,6 +79,7 @@ while turtle.xcor() < endPointX:
     turtle.forward(1)
 turtle.setheading(0)
 turtle.forward(letterHeight - lineWidth * 3)
+rightWall = turtle.xcor()
 turtle.setheading(240)
 endPointX = turtle.xcor() - lineWidth
 while turtle.xcor() > endPointX:
