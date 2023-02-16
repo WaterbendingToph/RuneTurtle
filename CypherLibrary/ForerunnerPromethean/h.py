@@ -5,10 +5,12 @@ window.setup(width = 600, height=600)
 letterHeight = 400
 lineWidth = 20
 rightWall = 0
-leftX = 0
-leftY = 0
-rightX = 0
-rightY = 0
+initialX = 0
+initialY = 0
+endPointX = 0
+endPointY = 0
+verticalOffset = 0
+horizontalOffset = 0
 
 turtle.mode("logo")
 turtle.penup()
@@ -40,7 +42,85 @@ turtle.pendown()
 
 
 #START
+turtle.begin_fill()
+turtle.setheading(330)
+turtle.forward(lineWidth * 2)
+turtle.setheading(30)
+turtle.forward(letterHeight / 2)
+turtle.setheading(270)
+turtle.forward(lineWidth)
+turtle.setheading(210)
+turtle.forward(letterHeight / 4)
+turtle.setheading(270)
+turtle.forward(letterHeight / 3)
+turtle.setheading(330)
+turtle.forward(lineWidth * 2)
+turtle.setheading(30)
+turtle.forward(lineWidth)
+turtle.setheading(150)
+turtle.forward(lineWidth * 2)
+turtle.setheading(90)
+turtle.forward(letterHeight / 3 - lineWidth)
+turtle.setheading(30)
+turtle.forward(letterHeight / 4)
+turtle.setheading(90)
+turtle.forward(lineWidth * 2)
+ReturnPoint = turtle.position()
+turtle.setheading(150)
+turtle.forward(lineWidth)
+turtle.setheading(210)
+turtle.forward(letterHeight / 2)
+turtle.setheading(150)
+turtle.forward(lineWidth)
+turtle.setheading(210)
+turtle.forward(lineWidth)
+turtle.end_fill()
 
+turtle.penup()
+turtle.goto(ReturnPoint)
+turtle.setheading(330)
+turtle.forward(lineWidth)
+turtle.pendown()
+turtle.begin_fill()
+ReturnPoint = turtle.position()
+turtle.setheading(270)
+turtle.forward(lineWidth * 2)
+turtle.setheading(210)
+turtle.forward(letterHeight / 4)
+turtle.setheading(270)
+turtle.forward(letterHeight / 3 - lineWidth * 2)
+turtle.setheading(330)
+turtle.forward(lineWidth * 2)
+turtle.setheading(30)
+turtle.forward(lineWidth * 2)
+turtle.setheading(150)
+turtle.forward(lineWidth)
+turtle.setheading(210)
+turtle.forward(lineWidth)
+turtle.setheading(150)
+turtle.forward(lineWidth)
+turtle.setheading(90)
+turtle.forward(letterHeight / 3 - lineWidth * 3)
+turtle.setheading(30)
+turtle.forward(letterHeight / 4)
+turtle.setheading(90)
+turtle.forward(lineWidth * 2)
+turtle.setheading(150)
+turtle.forward(lineWidth)
+turtle.end_fill()
+
+turtle.penup()
+turtle.setheading(90)
+turtle.forward(lineWidth)
+turtle.pendown()
+turtle.begin_fill()
+turtle.forward(lineWidth)
+rightWall = turtle.xcor()
+turtle.setheading(210)
+turtle.forward(lineWidth)
+turtle.setheading(330)
+turtle.forward(lineWidth)
+turtle.end_fill()
 #END
 
 turtle.done()
