@@ -32,11 +32,21 @@ turtle.forward(600)
 turtle.penup()
 turtle.pencolor("blacK")
 
-turtle.goto(-lineWidth / 2, -letterHeight / 2)
+turtle.goto(0, -letterHeight / 2)
 turtle.pendown()
 
 
 #START
+turtle.setheading(0)
+turtle.forward(letterHeight)
+turtle.setheading(120)
+turtle.forward(letterHeight / 2)
+turtle.setheading(240)
+turtle.forward(letterHeight / 2)
+turtle.setheading(120)
+turtle.forward(letterHeight / 2)
+turtle.setheading(240)
+turtle.forward(letterHeight / 2)
 #END
 
 turtle.done()
