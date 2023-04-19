@@ -39,8 +39,16 @@ turtle.pendown()
 #START
 turtle.setheading(0)
 turtle.begin_fill()
-turtle.circle(letterHeight / 20)
+# turtle.circle(letterHeight / 20, 90)
+rightWall = turtle.xcor()
+turtle.circle(letterHeight / 20, 360)
 turtle.end_fill()
 #END
 
+turtle.penup()
+turtle.goto(rightWall, -300)
+turtle.pencolor("blue")
+turtle.pendown()
+turtle.setheading(0)
+turtle.forward(600)
 turtle.done()

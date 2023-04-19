@@ -62,6 +62,13 @@ turtle.goto(returnPoint)
 turtle.setheading(90)
 turtle.pendown()
 turtle.circle(-letterHeight * (2/3) , 60)
+rightWall = turtle.xcor()
 #END
 
+turtle.penup()
+turtle.goto(rightWall, -300)
+turtle.pencolor("blue")
+turtle.pendown()
+turtle.setheading(0)
+turtle.forward(600)
 turtle.done()
