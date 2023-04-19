@@ -32,11 +32,23 @@ turtle.forward(600)
 turtle.penup()
 turtle.pencolor("blacK")
 
-turtle.goto(-lineWidth / 2, -letterHeight / 2)
+turtle.goto(-letterHeight / 2, -letterHeight / 2)
 turtle.pendown()
 
 
 #START
+while turtle.xcor() < letterHeight / 2:
+    turtle.setheading(120)
+    turtle.forward(lineWidth)
+    turtle.setheading(60)
+    turtle.forward(lineWidth)
+rightWall = turtle.xcor()
 #END
 
+turtle.penup()
+turtle.goto(rightWall, -300)
+turtle.pencolor("blue")
+turtle.pendown()
+turtle.setheading(0)
+turtle.forward(600)
 turtle.done()

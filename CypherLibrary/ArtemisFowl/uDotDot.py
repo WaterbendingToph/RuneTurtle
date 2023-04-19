@@ -39,4 +39,10 @@ turtle.pendown()
 #START
 #END
 
+turtle.penup()
+turtle.goto(rightWall, -300)
+turtle.pencolor("blue")
+turtle.pendown()
+turtle.setheading(0)
+turtle.forward(600)
 turtle.done()
