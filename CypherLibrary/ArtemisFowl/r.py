@@ -32,11 +32,22 @@ turtle.forward(600)
 turtle.penup()
 turtle.pencolor("blacK")
 
-turtle.goto(-lineWidth / 2, -letterHeight / 2)
+turtle.goto(0, -letterHeight / 2)
 turtle.pendown()
 
 
 #START
+startingX = turtle.xcor()
+turtle.setheading(90)
+turtle.circle(letterHeight / 10, 90)
+rightWall = turtle.xcor()
+arcLength = 0
+while turtle.xcor() > startingX:
+    turtle.circle(letterHeight / 2, 1)
+    arcLength += 1
+turtle.setheading( (180 - (turtle.heading() ) + 180))
+turtle.circle(-letterHeight / 2, -arcLength)
+turtle.circle(-letterHeight / 10, -90)
 #END
 
 turtle.penup()
