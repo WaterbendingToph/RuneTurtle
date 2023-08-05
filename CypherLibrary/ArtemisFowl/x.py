@@ -32,11 +32,27 @@ turtle.forward(600)
 turtle.penup()
 turtle.pencolor("blacK")
 
-turtle.goto(-lineWidth / 2, -letterHeight / 2)
+turtle.goto(letterHeight / 3, 0)
 turtle.pendown()
 
 
 #START
+increase = 1.618
+radius = letterHeight / 20
+turtle.setheading(0)
+for  i in range(5):
+    if i == 4:
+        rightWall = turtle.xcor()
+    turtle.circle(radius, 90)
+    radius *= increase
+
+turtle.circle(radius, 75)
+turtle.setheading(225)
+turtle.forward(letterHeight / 4)
+turtle.setheading(90)
+turtle.forward(letterHeight)
+turtle.setheading(315)
+turtle.forward(letterHeight / 12)
 #END
 
 turtle.penup()
