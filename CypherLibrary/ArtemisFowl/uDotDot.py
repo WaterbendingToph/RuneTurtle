@@ -32,11 +32,42 @@ turtle.forward(600)
 turtle.penup()
 turtle.pencolor("blacK")
 
-turtle.goto(-lineWidth / 2, -letterHeight / 2)
+turtle.goto(0, -letterHeight / 2)
 turtle.pendown()
 
 
 #START
+turtle.begin_fill()
+turtle.setheading(90)
+turtle.forward(lineWidth / 2)
+turtle.setheading(0)
+turtle.forward(letterHeight)
+turtle.setheading(270)
+turtle.forward(lineWidth)
+turtle.setheading(180)
+turtle.forward(letterHeight)
+turtle.setheading(90)
+turtle.forward(lineWidth / 2)
+turtle.end_fill()
+
+turtle.penup()
+turtle.goto(0, -letterHeight / 2 + lineWidth * 2)
+turtle.pendown()
+turtle.begin_fill()
+turtle.setheading(90)
+turtle.circle(letterHeight / 2 - lineWidth * 2, 180)
+turtle.setheading(0)
+turtle.forward(lineWidth)
+turtle.setheading(90)
+turtle.circle(-letterHeight / 2 + lineWidth, 90)
+rightWall = turtle.xcor()
+turtle.circle(-letterHeight / 2 + lineWidth, 270)
+turtle.setheading(180)
+turtle.forward(lineWidth)
+turtle.setheading(270)
+turtle.circle(letterHeight / 2 - lineWidth * 2, 180)
+turtle.end_fill()
+
 #END
 
 turtle.penup()

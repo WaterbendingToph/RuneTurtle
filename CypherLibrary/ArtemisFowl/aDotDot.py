@@ -32,11 +32,57 @@ turtle.forward(600)
 turtle.penup()
 turtle.pencolor("blacK")
 
-turtle.goto(-lineWidth / 2, -letterHeight / 2)
+turtle.goto(0, -letterHeight / 2)
 turtle.pendown()
 
 
 #START
+turtle.setheading(90)
+initialXCor = turtle.xcor()
+initialYCor = turtle.ycor()
+endYCor = initialYCor + letterHeight / 3
+arcLength = 0
+while turtle.ycor() < endYCor:
+    turtle.circle(letterHeight / 2, 1)
+    arcLength += 1
+rightWall = turtle.xcor()
+
+turtle.penup()
+turtle.goto(initialXCor, initialYCor)
+turtle.pendown()
+turtle.setheading(270)
+turtle.circle(-letterHeight / 2, arcLength)
+
+turtle.penup()
+turtle.goto(initialXCor, initialYCor + 2 * letterHeight / 3)
+returnPoint = turtle.position()
+turtle.pendown()
+turtle.setheading(90)
+turtle.circle(-letterHeight / 2, arcLength)
+
+turtle.penup()
+turtle.goto(returnPoint)
+turtle.pendown()
+turtle.setheading(270)
+turtle.circle(letterHeight / 2, arcLength)
+
+turtle.penup()
+turtle.goto(returnPoint)
+turtle.pendown()
+turtle.setheading(225)
+turtle.begin_fill()
+arcLength = 0 
+endYCor = (turtle.ycor() - initialYCor) / 2 + initialYCor
+while turtle.ycor() >= endYCor:
+    turtle.circle(letterHeight / 2, 1)
+    arcLength += 1
+turtle.setheading(180)
+turtle.circle(letterHeight / 2, arcLength)
+turtle.setheading(45)
+turtle.circle(letterHeight / 2, arcLength)
+turtle.setheading(0)
+turtle.circle(letterHeight / 2, arcLength)
+turtle.end_fill()
 #END
 
 turtle.penup()
