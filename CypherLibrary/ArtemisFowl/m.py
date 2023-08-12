@@ -37,6 +37,32 @@ turtle.pendown()
 
 
 #START
+returnPoint = turtle.position()
+turtle.setheading(90)
+turtle.forward(lineWidth)
+turtle.setheading(0)
+turtle.forward(letterHeight / 2)
+turtle.setheading(90)
+turtle.circle(lineWidth * 2, 45)
+turtle.circle(lineWidth * 4, 45)
+turtle.forward(lineWidth * 2)
+rightWall = turtle.xcor()
+turtle.setheading(270)
+turtle.circle(lineWidth * 2, 45)
+turtle.circle(lineWidth * 4, 45)
+returnPoint1 = turtle.position()
+
+turtle.penup()
+turtle.goto(returnPoint)
+turtle.pendown()
+turtle.setheading(0)
+turtle.forward(letterHeight / 2)
+turtle.setheading(270)
+turtle.circle(-lineWidth * 2, 45)
+turtle.circle(-lineWidth * 4, 45)
+turtle.forward(lineWidth * 2)
+turtle.setheading(90)
+turtle.circle(-1 * (returnPoint1[0] - turtle.xcor() ), 90)
 #END
 
 turtle.penup()
