@@ -32,11 +32,36 @@ turtle.forward(600)
 turtle.penup()
 turtle.pencolor("blacK")
 
-turtle.goto(-lineWidth / 2, -letterHeight / 2)
+turtle.goto(0, -letterHeight / 2)
 turtle.pendown()
 
 
 #START
+turtle.setheading(135)
+turtle.circle(letterHeight / 4, -12)
+turtle.circle(letterHeight / 4, 147)     #, 135)
+rightWall = turtle.xcor()
+turtle.circle(letterHeight / 4, 180)   # 135 makes it an even 270 all the way through the arc
+turtle.circle(-letterHeight / 6, 270)
+returnPoint = turtle.position()
+turtle.circle(-letterHeight / 5, 63)                    #  turtle.circle(-letterHeight / 4, 48)
+
+turtle.penup()
+turtle.goto(returnPoint)
+turtle.setheading(90)
+turtle.forward(2 * (letterHeight / 6) + (letterHeight / 4 - letterHeight / 6) )
+returnPoint = turtle.position()
+turtle.pendown()
+turtle.setheading(270)
+turtle.circle(letterHeight / 6, 90)
+turtle.circle(-letterHeight / 4, 328)
+
+turtle.penup()
+turtle.goto(returnPoint)
+turtle.pendown()
+turtle.setheading(90)
+turtle.circle(-letterHeight / 6, 180)
+turtle.circle(-letterHeight / 5, 61)
 #END
 
 turtle.penup()
