@@ -32,11 +32,50 @@ turtle.forward(600)
 turtle.penup()
 turtle.pencolor("blacK")
 
-turtle.goto(-lineWidth / 2, -letterHeight / 2)
+turtle.goto(0, -letterHeight / 2)
 turtle.pendown()
 
 
 #START
+returnPoints = []
+
+turtle.setheading(30)
+turtle.circle(letterHeight / 2, 60)
+centerPoint = turtle.position()
+turtle.setheading(turtle.heading() + 180)
+turtle.circle(letterHeight / 2, 60)
+returnPoints.append(turtle.position() )
+rightWall = turtle.xcor()
+turtle.setheading(turtle.heading() + 240)
+turtle.circle(letterHeight / 2, 60)
+turtle.setheading(turtle.heading() + 180)
+turtle.circle(letterHeight / 2, 60)
+returnPoints.append(turtle.position() )
+turtle.setheading(turtle.heading() + 240)
+turtle.circle(letterHeight / 2, 60)
+
+turtle.setheading(turtle.heading() + 120)
+turtle.circle(letterHeight / 2, 60)
+returnPoints.append(turtle.position() )
+turtle.setheading(turtle.heading() + 240)
+turtle.circle(letterHeight / 2, 60)
+turtle.setheading(turtle.heading() + 180)
+turtle.circle(letterHeight / 2, 60)
+returnPoints.append(turtle.position() )
+turtle.setheading(turtle.heading() + 240)
+turtle.circle(letterHeight / 2, 60)
+turtle.setheading(turtle.heading() + 180)
+turtle.circle(letterHeight / 2, 60)
+turtle.goto(centerPoint)
+
+for x in returnPoints:
+    turtle.penup()
+    turtle.goto(x)
+    turtle.pendown()
+    turtle.goto(centerPoint)
+
+turtle.setheading(0)
+turtle.forward(letterHeight / 3)
 #END
 
 turtle.penup()
