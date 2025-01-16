@@ -19,10 +19,16 @@ turtle.forward(500)
 turtle.pencolor("black")
 turtle.penup()
 
-turtle.goto(-125, 75)
+turtle.goto(-125, 125)
 turtle.pendown()
 
 #START
+turtle.penup()
+turtle.setheading(270)
+turtle.forward(letterHeight / 4)
+turtle.setheading(180)
+turtle.forward(letterHeight / 5)
+turtle.pendown()
 startingPoint = turtle.position()
 turtle.setheading(45)
 turtle.circle(int(-letterHeight * (2 / 5) ), 285, int(letterHeight / 4) )
@@ -31,8 +37,6 @@ turtle.goto(startingPoint)
 turtle.pendown()
 turtle.setheading(37)
 turtle.circle(int(-letterHeight * (1 / 2) ), 302, int(letterHeight / 4) )
-turtle.penup()
-turtle.goto(0, 0)
 #END
 
 turtle.done()
