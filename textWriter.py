@@ -27,7 +27,7 @@ def goToStartingPoint(language, letter, letterHeight, windowWidth, letterIndex, 
     if language == 'GreenRune':
         # letterWidth == letterHeight for GreenRune.
         yCoordiante = 0
-        if ['b','c','k','r','(',')'].count(letter) == 1:
+        if ['b','c','k','r','(',')','\''].count(letter) == 1:
             yCoordiante -= letterHeight / 2
         else:
             yCoordiante += letterHeight / 2
@@ -35,7 +35,7 @@ def goToStartingPoint(language, letter, letterHeight, windowWidth, letterIndex, 
         xCoordinate = -1 * (windowWidth / 2) + (letterHeight / 2) + (letterHeight * letterIndex) # should be to the left edge of the letter
         if ['h','i','j','o','q','s','w','?','u'].count(letter) == 1:
             xCoordinate += letterHeight / 2
-        elif ['g','y','('].count(letter) == 1:
+        elif ['g','y',')'].count(letter) == 1:
             xCoordinate += letterHeight
 
         stringToAdd = str(xCoordinate) + ',' + str(yCoordiante)
@@ -45,9 +45,22 @@ def goToStartingPoint(language, letter, letterHeight, windowWidth, letterIndex, 
 
     return
 
+def translateNextLetterToFilename(language, letter):
+    if language == 'GreenRune':
+        GreenRuneLetterFileNames = {'a': 'a', 'b':'b', 'c':'c', 'd':'d', 'e':'e', 'f':'f', 'g':'g', 'h':'h', 'i':'i', 'j':'j', 'k':'k', 'l':'l', 'm':'m', 'n':'n', 'o':'o', 'p':'p', 'q':'q', 'r':'r', 's':'s', 't':'t', 'u':'u', 'v':'v', 'y':'y', 'z':'z', ')':'closeParen', '\'':'openQuotation', '(':'openParen', '?':'questionMark', ',':'comma'}
+        result = GreenRuneLetterFileNames.get(letter)
+        if result is None:
+            raise ImportError('The letter you are seaching for: ' + letter + ' is not in the language that you provided (' + language + ')\n')
+        return result
+        
+
 def getCodeForLetter(language, letter, writingType):
     codeToWriteLetter = []
-
+    try:
+        letter = translateNextLetterToFilename(language=language, letter=letter)
+    except:
+        raise ImportError('The letter you are seaching for: ' + letter + ' is not in the language that you provided (' + language + ') and this was cuaght by getCodeForLetter\n')
+    
     with open(os.path.join(os.path.dirname(os.path.abspath(__file__) ), 'CypherLibrary/' + language + '/' + letter + '.py'), 'r' ) as x:
         codeToWriteLetter = x.read()
     
