@@ -1,4 +1,5 @@
 import os
+import sys
 '''
     TODO:
         Decide on standardized test suite to run through this program (to implement for easy testing later) to check with all major tests and before pushes
@@ -10,7 +11,12 @@ import os
         Change how the letters are displayed to make lines of text (at first in only english's way, designed to be changable for languages with other directions of reading)
         Figure out how to make the flags in each letter file to check for and how to pick up on em to in order to pull in letters
         Implement reading in all the non-letter bits of each language as appropriate -> ( and ), etc. + error throwing 4 illegal characters
+        Related but make numbers go to number system selected if not covered by language
         Find a more effective way to center all letters both in height and width
+        |_>Update the starting code that gets ignored in all files (of each language as read in) to include lower borders
+        |_>Then, update those same letter files to center the drawn text within the box, and to stay in the damn box to begin with!
+        |_>Could then or in a later update all about efficiency trim down on the number of commands by using more efficient ones to trim down on runtime by decresasing read in and write out amounts
+        Make it so you can put in the language w/out precisely matching capitalization of the file structure for that language (changes to getCodeForLetter() )
 '''
 #   METHOD(S) TO BE USED IN THE FILE LATER
 def goToStartingPoint(language, letter, letterHeight, windowWidth, letterIndex, fullWritingLength):
@@ -19,7 +25,7 @@ def goToStartingPoint(language, letter, letterHeight, windowWidth, letterIndex, 
     results = ['turtle.penup()', 'turtle.goto()', 'turtle.pendown()', 'turtle.setheading(90)']
 
     if language == 'GreenRune':
-        # letterWidth =/= letterHeight for GreenRune, need to calculate this out better so that letters don't overlap each other after all letters are written to stay in their vertical bounds first
+        # letterWidth == letterHeight for GreenRune.
         yCoordiante = 0
         if ['b','c','k','r','(',')'].count(letter) == 1:
             yCoordiante -= letterHeight / 2
@@ -57,11 +63,24 @@ def getCodeForLetter(language, letter, writingType):
     return codeToWriteLetter 
 
 #   READ IN THE STUFF TO TRANSLATE
-inputString = 'I Love You Zee'
-languageToUse = 'GreenRune'
+if len(sys.argv) <= 4:
+    raise RuntimeError('This command should be run with multiple arguments. The first for a text file of input text, the second with the name of the output python file. The third is language for text, and fourth is language for numbers if not included in third. There may be more optional arguments after this based on the languages used.')
+
+inputFileName = str(sys.argv[1] )
+input = open(inputFileName, 'r')
+inputString = []
+for x in range(300):
+    nextLine = input.read()
+    if nextLine == "": 
+        break
+    inputString.append(nextLine.split('\n\n') )
+inputString = inputString[0][0]
+
+outputFileName = str(sys.argv[2] )
+languageToUse = str(sys.argv[3] )
 writingType = 'individual'      #should be either 'individual' or 'compound' and used only for languages like GreenRune that can be written in either format
-numeralSystemToUse = ''
-output = open('encodedText.py', 'w')
+numeralSystemToUse = str(sys.argv[4] )
+output = open(outputFileName, 'w')
 windowHeight, windowWidth = 600, 1000
 writingSpeed = 0
 
@@ -90,7 +109,7 @@ if languageToUse == 'GreenRune':
 codeToWriteFullSentence = []
 for letterIndex in range(len(inputString) ):
     nextLetterToWrite = inputString[letterIndex]
-    if nextLetterToWrite == ' ':
+    if nextLetterToWrite.isspace():
         continue
     resetCode = goToStartingPoint(language=languageToUse, letter=nextLetterToWrite, letterHeight=letterHeight, windowWidth=windowWidth, letterIndex=letterIndex, fullWritingLength=len(inputString) )
 
