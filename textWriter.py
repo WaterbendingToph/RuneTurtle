@@ -34,7 +34,7 @@ def goToStartingPoint(language, letter, identifyingLetterHeight, windowWidth, le
         else:
             yCoordiante += letterHeight / 2
 
-        xCoordinate = -1 * (windowWidth / 2) + (letterHeight / 2) + (letterHeight * letterIndex) # should be to the left edge of the letter
+        xCoordinate = -1 * (windowWidth / 2) + (letterHeight / 2) + (letterHeight * letterIndex)
         if ['h','i','j','o','q','s','w','?','u'].count(letter) == 1:
             xCoordinate += letterHeight / 2
         elif ['g','y',')'].count(letter) == 1:
@@ -42,15 +42,15 @@ def goToStartingPoint(language, letter, identifyingLetterHeight, windowWidth, le
     
     elif language == 'StandardGalacticAlphabet':
         length, letterLength = identifyingLetterHeight / 5, identifyingLetterHeight
-        yCoordiante = -1 * (identifyingLetterHeight / 2) #bottom row of letter
-        xCoordinate = -1 * (windowWidth / 2) + (letterLength / 2) + (letterLength * letterIndex) #leftmost outside of letter
+        yCoordiante = -1 * (identifyingLetterHeight / 2)
+        xCoordinate = -1 * (windowWidth / 2) + (letterLength / 2) + (letterLength * letterIndex)
         bottomLeft, bottomRight, topLeft, topRight = (xCoordinate, yCoordiante), (xCoordinate + letterLength, yCoordiante), (xCoordinate, yCoordiante * -1), (xCoordinate + letterLength, yCoordiante * -1)
 
-        results.append('length = ' + str(length) + '\n')
-        results.append('bottomLeft = ' + str(bottomLeft) + '\n')
-        results.append('bottomRight = ' + str(bottomRight) + '\n')
-        results.append('topLeft = ' + str(topLeft) + '\n')
-        results.append('topRight = ' + str(topRight) + '\n')
+        results.append('length = ' + str(length) )
+        results.append('bottomLeft = ' + str(bottomLeft) )
+        results.append('bottomRight = ' + str(bottomRight) )
+        results.append('topLeft = ' + str(topLeft) )
+        results.append('topRight = ' + str(topRight) )
 
     results[1] = results[1][:-1] + str(xCoordinate) + ',' + str(yCoordiante) + results[1][-1]
     return results
@@ -119,10 +119,6 @@ writingSpeed = 0
 greenRuneWritingType, letterHeight = '', int(windowWidth / (len(inputString) + 1) )
 bottomLeft, bottomRight, topLeft, topRight, length = (0,0), (0,0), (0,0), (0,0), letterHeight / 5
 
-#   ALTER THE TEXT INPUT / DETERMINE SETUP ENV AS NECESSARY 4 LANGUAGE SELECTED
-#       MINOR CHANGES COULD BE FOUND AND MADE BEFORE CONINUING, BUT FOR LARGER ISSUES SHOULD ERROR OUT AND ASK FOR CORRECTION
-
-
 #   SETUP THE STARTING ENV 
 output.write('import turtle\nwindow = turtle.Screen()\nwindow.setup(width=' + str(windowWidth) + ', height=' + str(windowHeight) + ')\nturtle.mode("logo")\nturtle.speed(' + str(writingSpeed) + ')\n')
 
@@ -134,7 +130,6 @@ if languageToUse == 'GreenRune':
 
 if languageToUse == 'StandardGalacticAlphabet':
     output.write('length = ' + str(length) + '\n\n')
-
 
 #   WRITE OUT THE TEXT AS A WHOLE - TWO SECTIONS, 1 FOR WRITING EACH LETTER, 1 FOR WRITING EACH WORD (BASED ON LANG & WRITING STYLE IN IT)
 #       LETTER BY LETTER LANGUAGES
