@@ -40,7 +40,7 @@ def goToStartingPoint(language, letter, identifyingLetterHeight, windowWidth, le
         elif ['g','y',')'].count(letter) == 1:
             xCoordinate += letterHeight
     
-    elif language == 'StandardGalacticAlphabet':
+    elif language == 'MinecraftEnchantTable':
         length, letterLength = identifyingLetterHeight / 5, identifyingLetterHeight
         yCoordiante = -1 * (identifyingLetterHeight / 2)
         xCoordinate = -1 * (windowWidth / 2) + (letterLength / 2) + (letterLength * letterIndex)
@@ -61,9 +61,9 @@ def translateNextLetterToFilename(language, letter):
         GreenRuneLetterFileNames = {'a': 'a', 'b':'b', 'c':'c', 'd':'d', 'e':'e', 'f':'f', 'g':'g', 'h':'h', 'i':'i', 'j':'j', 'k':'k', 'l':'l', 'm':'m', 'n':'n', 'o':'o', 'p':'p', 'q':'q', 'r':'r', 's':'s', 't':'t', 'u':'u', 'v':'v', 'w':'w', 'x':'x', 'y':'y', 'z':'z', ')':'closeParen', '\'':'openQuotation', '(':'openParen', '?':'questionMark', ',':'comma'}
         result = GreenRuneLetterFileNames.get(letter)
 
-    if language == 'StandardGalacticAlphabet':
-        StandardGalacticAlphabetFileNames = {'a': 'a', 'b':'b', 'c':'c', 'd':'d', 'e':'e', 'f':'f', 'g':'g', 'h':'h', 'i':'i', 'j':'j', 'k':'k', 'l':'l', 'm':'m', 'n':'n', 'o':'o', 'p':'p', 'q':'q', 'r':'r', 's':'s', 't':'t', 'u':'u', 'v':'v', 'w':'w', 'x':'x', 'y':'y', 'z':'z'}
-        result = StandardGalacticAlphabetFileNames.get(letter)
+    if language == 'MinecraftEnchantTable':
+        MinecraftEnchantTableFileNames = {'a': 'a', 'b':'b', 'c':'c', 'd':'d', 'e':'e', 'f':'f', 'g':'g', 'h':'h', 'i':'i', 'j':'j', 'k':'k', 'l':'l', 'm':'m', 'n':'n', 'o':'o', 'p':'p', 'q':'q', 'r':'r', 's':'s', 't':'t', 'u':'u', 'v':'v', 'w':'w', 'x':'x', 'y':'y', 'z':'z'}
+        result = MinecraftEnchantTableFileNames.get(letter)
     
     if result is None:
         raise ImportError('The letter you are seaching for: ' + letter + ' is not in the language that you provided (' + language + '\'n')
@@ -76,8 +76,6 @@ def getCodeForLetter(language, letter, writingType):
         letter = translateNextLetterToFilename(language=language, letter=letter)
     except:
         raise ImportError('The letter you are seaching for: ' + letter + ' is not in the language that you provided (' + language + '\'n')
-    if language == 'StandardGalacticAlphabet':
-        language = 'MinecraftEnchantTable'
     
     with open(os.path.join(os.path.dirname(os.path.abspath(__file__) ), 'CypherLibrary/' + language + '/' + letter + '.py'), 'r' ) as x:
         codeToWriteLetter = x.read()
@@ -92,6 +90,26 @@ def getCodeForLetter(language, letter, writingType):
     codeToWriteLetter = codeToWriteLetter[startingIndex:endingIndex]
 
     return codeToWriteLetter 
+
+def makeLanguageUniform(input):
+    input = input.lower()
+    AlienesePseudonyms = ['al']
+    ArtemisFowlPseudonyms = ['af']
+    CCGallifreyanPseudonyms = ['cc']
+    CircularGallifreyanPseudonyms = ['cg']
+    CisterianNumbersPseudonyms = ['cn', 'cisterian', 'cisteriannumbers', 'cisteriannumber']
+    CovenantPseudonyms = ['co']
+    FluxJudonesePseudonyms = ['fj']
+    ForerunnerPrometheanPseudonyms = ['fp']
+    GreenRunePseudonyms = ['gr', 'greenrune']
+    HowToTrainYourDragonPseudonyms = ['ht']
+    MinecraftEnchantTablePseudonyms = ['mc', 'minecraft', 'met', 'minecraftenchanttable', 'standardgalacticalphabet']
+    allLanguages = [AlienesePseudonyms, ArtemisFowlPseudonyms, CCGallifreyanPseudonyms, CircularGallifreyanPseudonyms, CisterianNumbersPseudonyms, CovenantPseudonyms, FluxJudonesePseudonyms, ForerunnerPrometheanPseudonyms, GreenRunePseudonyms, HowToTrainYourDragonPseudonyms, MinecraftEnchantTablePseudonyms ]
+    allLanguageFileNames = ['Alienese', 'ArtemisFowl', 'CCGallifreyan', 'CircularGallifreyan', 'CisterianNumbers', 'Covenant', 'FluxJudonese', 'ForerunnerPromethean', 'GreenRune', 'HowToTrainYourDragon', 'MinecraftEnchantTable']
+    for index in range(len(allLanguages) ):
+        if allLanguages[index].count(input) == 1:
+            return allLanguageFileNames[index]
+    raise RuntimeError('This command should be run with multiple arguments. The first for a text file of input text, the second with the name of the output python file. The third is language for text, and fourth is language for numbers if not included in third. There may be more optional arguments after this based on the languages used.')
 
 #   READ IN THE STUFF TO TRANSLATE
 if len(sys.argv) <= 4:
@@ -108,7 +126,7 @@ for x in range(300):
 inputString = inputString[0][0]
 
 outputFileName = str(sys.argv[2] )
-languageToUse = str(sys.argv[3] )
+languageToUse = makeLanguageUniform(str(sys.argv[3] ) )
 writingType = 'individual'      #should be either 'individual' or 'compound' and used only for languages like GreenRune that can be written in either format
 numeralSystemToUse = str(sys.argv[4] )
 output = open(outputFileName, 'w')
@@ -128,7 +146,7 @@ if languageToUse == 'GreenRune':
     inputString = inputString.lower()
     output.write('letterHeight = ' + str(letterHeight) + '\n\n')
 
-if languageToUse == 'StandardGalacticAlphabet':
+if languageToUse == 'MinecraftEnchantTable':
     output.write('length = ' + str(length) + '\n\n')
 
 #   WRITE OUT THE TEXT AS A WHOLE - TWO SECTIONS, 1 FOR WRITING EACH LETTER, 1 FOR WRITING EACH WORD (BASED ON LANG & WRITING STYLE IN IT)
@@ -142,7 +160,7 @@ for letterIndex in range(len(inputString) ):
     
     if languageToUse == 'GreenRune':
         identifyingLetterHeight = letterHeight
-    elif languageToUse == 'StandardGalacticAlphabet':
+    elif languageToUse == 'MinecraftEnchantTable':
         identifyingLetterHeight = letterHeight
 
     resetCode = goToStartingPoint(language=languageToUse, letter=nextLetterToWrite, identifyingLetterHeight=identifyingLetterHeight, windowWidth=windowWidth, letterIndex=letterIndex, fullWritingLength=len(inputString) )
