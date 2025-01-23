@@ -17,6 +17,7 @@ import textWriterHelper
         |_>Could then or in a later update all about efficiency trim down on the number of commands by using more efficient ones to trim down on runtime by decresasing read in and write out amounts
         Make it so you can put in the language w/out precisely matching capitalization of the file structure for that language (changes to getCodeForLetter() )
         Pull out the language check everywhere to use function 2 return an enum @ startup
+        Allow Flux Judonese to write in its other directions using the direction optional argument and variable - letters will handle directional change on their end 4 writing specifics
 '''
 #   READ IN THE STUFF TO TRANSLATE
 if len(sys.argv) <= 4:
@@ -41,8 +42,9 @@ windowHeight, windowWidth = 600, 1000
 writingSpeed = 0
 
 #   ONLY POTENTIALLY USED VARIABLES - 1 line / language instituting them
-greenRuneWritingType, letterHeight = '', int(windowWidth / (len(inputString) + 1) )
-bottomLeft, bottomRight, topLeft, topRight, length = (0,0), (0,0), (0,0), (0,0), letterHeight / 5
+greenRuneWritingType, letterHeight = '', int(windowWidth / (len(inputString) + 1) )                         # from GreenRune
+bottomLeft, bottomRight, topLeft, topRight, length = (0,0), (0,0), (0,0), (0,0), letterHeight / 5           # from Minecraft Enchant Table
+direction = 0                                                                                               # from Flux Judonese
 
 #   SETUP THE STARTING ENV 
 output.write('import turtle\nwindow = turtle.Screen()\nwindow.setup(width=' + str(windowWidth) + ', height=' + str(windowHeight) + ')\nturtle.mode("logo")\nturtle.speed(' + str(writingSpeed) + ')\n')
@@ -56,6 +58,10 @@ if languageToUse == 'GreenRune':
 if languageToUse == 'MinecraftEnchantTable':
     output.write('length = ' + str(length) + '\n\n')
 
+if languageToUse == 'FluxJudonese':
+    output.write('direction = ' + str(direction) + '\n\n')
+    output.write(textWriterHelper.printExtraFilePrimerMaterial(language=languageToUse) )
+
 #   WRITE OUT THE TEXT AS A WHOLE - TWO SECTIONS, 1 FOR WRITING EACH LETTER
 #  1 FOR WRITING EACH WORD (BASED ON LANG & WRITING STYLE IN IT) LETTER BY LETTER LANGUAGES
 
@@ -68,6 +74,8 @@ for letterIndex in range(len(inputString) ):
     if languageToUse == 'GreenRune':
         identifyingLetterHeight = letterHeight
     elif languageToUse == 'MinecraftEnchantTable':
+        identifyingLetterHeight = letterHeight
+    elif languageToUse == 'FluxJudonese':
         identifyingLetterHeight = letterHeight
 
     resetCode = textWriterHelper.goToStartingPoint(language=languageToUse, letter=nextLetterToWrite, identifyingLetterHeight=identifyingLetterHeight, windowWidth=windowWidth, letterIndex=letterIndex, fullWritingLength=len(inputString) )

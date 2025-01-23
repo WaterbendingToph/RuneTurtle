@@ -163,6 +163,7 @@ turtle.setheading(left)
 turtle.forward(length * 2)
 turtle.end_fill()
 
+turtle.penup()
 turtle.setheading(up)
 turtle.forward(length * 2)
 turtle.pendown()

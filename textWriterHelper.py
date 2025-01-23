@@ -32,6 +32,17 @@ def goToStartingPoint(language, letter, identifyingLetterHeight, windowWidth, le
         results.append('topLeft = ' + str(topLeft) )
         results.append('topRight = ' + str(topRight) )
 
+    elif language == 'FluxJudonese':
+        length, letterLength = identifyingLetterHeight / 7, identifyingLetterHeight
+        xCoordinate, yCoordiante = -1 * (windowWidth / 2) + (letterLength / 2) + (letterLength * letterIndex), -1 * (identifyingLetterHeight / 2)
+        bottomLeft, bottomRight, topLeft, topRight =  (xCoordinate, yCoordiante), (xCoordinate + letterLength, yCoordiante), (xCoordinate, yCoordiante * -1), (xCoordinate + letterLength, yCoordiante * -1)
+
+        results.append('length = ' + str(length) )
+        results.append('bottomLeft = ' + str(bottomLeft) )
+        results.append('bottomRight = ' + str(bottomRight) )
+        results.append('topLeft = ' + str(topLeft) )
+        results.append('topRight = ' + str(topRight) )
+
     results[1] = results[1][:-1] + str(xCoordinate) + ',' + str(yCoordiante) + results[1][-1]
     return results
 
@@ -45,6 +56,10 @@ def translateNextLetterToFilename(language, letter):
         MinecraftEnchantTableFileNames = {'a': 'a', 'b':'b', 'c':'c', 'd':'d', 'e':'e', 'f':'f', 'g':'g', 'h':'h', 'i':'i', 'j':'j', 'k':'k', 'l':'l', 'm':'m', 'n':'n', 'o':'o', 'p':'p', 'q':'q', 'r':'r', 's':'s', 't':'t', 'u':'u', 'v':'v', 'w':'w', 'x':'x', 'y':'y', 'z':'z'}
         result = MinecraftEnchantTableFileNames.get(letter)
     
+    if language == 'FluxJudonese':
+        FluxJudoneseFileNames = {'a': 'a', 'b':'b', 'c':'c', 'd':'d', 'e':'e', 'f':'f', 'g':'g', 'h':'h', 'i':'i', 'j':'j', 'k':'k', 'l':'l', 'm':'m', 'n':'n', 'o':'o', 'p':'p', 'q':'q', 'r':'r', 's':'s', 't':'t', 'u':'u', 'v':'v', 'w':'w', 'x':'x', 'y':'y', 'z':'z'}
+        result = FluxJudoneseFileNames.get(letter)
+
     if result is None:
         raise ImportError('The letter you are seaching for: ' + letter + ' is not in the language that you provided (' + language + '\'n')
     return result
@@ -79,7 +94,7 @@ def makeLanguageUniform(input):
     CircularGallifreyanPseudonyms = ['cg']
     CisterianNumbersPseudonyms = ['cn', 'cisterian', 'cisteriannumbers', 'cisteriannumber']
     CovenantPseudonyms = ['co']
-    FluxJudonesePseudonyms = ['fj']
+    FluxJudonesePseudonyms = ['fj', 'flux', 'fluxjudonese', 'judonese']
     ForerunnerPrometheanPseudonyms = ['fp']
     GreenRunePseudonyms = ['gr', 'greenrune']
     HowToTrainYourDragonPseudonyms = ['ht']
@@ -90,3 +105,7 @@ def makeLanguageUniform(input):
         if allLanguages[index].count(input) == 1:
             return allLanguageFileNames[index]
     raise RuntimeError('This command should be run with multiple arguments. The first for a text file of input text, the second with the name of the output python file. The third is language for text, and fourth is language for numbers if not included in third. There may be more optional arguments after this based on the languages used.')
+
+def printExtraFilePrimerMaterial(language):
+    with open(os.path.join(os.path.dirname(os.path.abspath(__file__) ), 'CypherLibrary/' + language + '/encodedTextPrimerFile.txt'), 'r' ) as x:
+        return x.read()
