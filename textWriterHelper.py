@@ -50,6 +50,10 @@ def goToStartingPoint(language, letter, identifyingLetterHeight, windowWidth, le
         results.insert(2, 'turtle.setheading(45)')
         results.insert(3, 'turtle.forward( ( ( (2 * (letterHeight ** 2) ) ** (0.5) ) / 2) - ( (2 * ( (letterHeight / 4) ** 2) ) ** (0.5) ) )')
 
+    elif language == 'HowToTrainYourDragon':
+        letterHeight = identifyingLetterHeight
+        xCoordinate, yCoordiante = -1 * (windowWidth / 2) + (letterHeight / 2) + (letterHeight * letterIndex), -1 * (letterHeight / 2)
+
     results[1] = results[1][:-1] + str(xCoordinate) + ',' + str(yCoordiante) + results[1][-1]
     return results
 
@@ -71,6 +75,10 @@ def translateNextLetterToFilename(language, letter):
         CovenantFileNames = {'a': 'a', 'b':'b', 'c':'c', 'd':'d', 'e':'e', 'f':'f', 'g':'g', 'h':'h', 'i':'i', 'j':'j', 'k':'k', 'l':'l', 'm':'m', 'n':'n', 'o':'o', 'p':'p', 'q':'q', 'r':'r', 's':'s', 't':'t', 'u':'u', 'v':'v', 'w':'w', 'x':'x', 'y':'y', 'z':'z'}
         result = CovenantFileNames.get(letter)
 
+    if language == 'HowToTrainYourDragon':
+        HowToTrainYourDragonFileNames = {'a': 'a', 'b':'b', 'c':'c', 'd':'d', 'e':'e', 'f':'f', 'g':'g', 'h':'h', 'i':'ij', 'j':'ij', 'k':'k', 'l':'l', 'm':'m', 'n':'n', 'o':'o', 'p':'p', 'q':'q', 'r':'r', 's':'s', 't':'t', 'u':'uvw', 'v':'uvw', 'w':'uvw', 'x':'x', 'y':'y', 'z':'z'}
+        result = HowToTrainYourDragonFileNames.get(letter)
+    
     if result is None:
         raise ImportError('The letter you are seaching for: ' + letter + ' is not in the language that you provided (' + language + '\'n')
     return result
@@ -108,7 +116,7 @@ def makeLanguageUniform(input):
     FluxJudonesePseudonyms = ['fj', 'flux', 'fluxjudonese', 'judonese']
     ForerunnerPrometheanPseudonyms = ['fp']
     GreenRunePseudonyms = ['gr', 'greenrune']
-    HowToTrainYourDragonPseudonyms = ['ht']
+    HowToTrainYourDragonPseudonyms = ['ht', 'httyd', 'howtotrainyourdragon', 'vikingalphabet']
     MinecraftEnchantTablePseudonyms = ['mc', 'minecraft', 'met', 'minecraftenchanttable', 'standardgalacticalphabet']
     allLanguages = [AlienesePseudonyms, ArtemisFowlPseudonyms, CCGallifreyanPseudonyms, CircularGallifreyanPseudonyms, CisterianNumbersPseudonyms, CovenantPseudonyms, FluxJudonesePseudonyms, ForerunnerPrometheanPseudonyms, GreenRunePseudonyms, HowToTrainYourDragonPseudonyms, MinecraftEnchantTablePseudonyms ]
     allLanguageFileNames = ['Alienese', 'ArtemisFowl', 'CCGallifreyan', 'CircularGallifreyan', 'CisterianNumbers', 'Covenant', 'FluxJudonese', 'ForerunnerPromethean', 'GreenRune', 'HowToTrainYourDragon', 'MinecraftEnchantTable']
