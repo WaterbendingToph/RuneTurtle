@@ -18,6 +18,7 @@ import textWriterHelper
         Make it so you can put in the language w/out precisely matching capitalization of the file structure for that language (changes to getCodeForLetter() )
         Pull out the language check everywhere to use function 2 return an enum @ startup
         Allow Flux Judonese to write in its other directions using the direction optional argument and variable - letters will handle directional change on their end 4 writing specifics
+        Make the 'hidden' letters of languages accessible: letters with dots and whitespace of Artemis Fowl, end quotes of GreenRune
 '''
 #   READ IN THE STUFF TO TRANSLATE
 if len(sys.argv) <= 4:
@@ -45,6 +46,7 @@ writingSpeed = 0
 greenRuneWritingType, letterHeight = '', int(windowWidth / (len(inputString) + 1) )                         # from GreenRune
 bottomLeft, bottomRight, topLeft, topRight, length = (0,0), (0,0), (0,0), (0,0), letterHeight / 5           # from Minecraft Enchant Table
 direction = 0                                                                                               # from Flux Judonese
+lineWidth = letterHeight / 10                                                                               # from HowToTrainYourDragon
 
 #   SETUP THE STARTING ENV 
 output.write('import turtle\nwindow = turtle.Screen()\nwindow.setup(width=' + str(windowWidth) + ', height=' + str(windowHeight) + ')\nturtle.mode("logo")\nturtle.speed(' + str(writingSpeed) + ')\n')
@@ -62,6 +64,16 @@ if languageToUse == 'FluxJudonese':
     output.write('direction = ' + str(direction) + '\n\n')
     output.write(textWriterHelper.printExtraFilePrimerMaterial(language=languageToUse) )
 
+if languageToUse == 'Covenant':
+    output.write('letterHeight = ' + str(letterHeight) + '\n')
+    output.write('largeSide = ' + str(letterHeight / 2) + '\n')
+    output.write('smallerSide = ' + str(letterHeight / 5) + '\n')
+
+if languageToUse == 'HowToTrainYourDragon':
+    output.write('letterHeight = ' + str(letterHeight) + '\n')
+    output.write('lineWidth = ' + str(lineWidth) + '\n')
+    output.write('diagonal = ' + str(lineWidth * 3) + '\n')
+
 #   WRITE OUT THE TEXT AS A WHOLE - TWO SECTIONS, 1 FOR WRITING EACH LETTER
 #  1 FOR WRITING EACH WORD (BASED ON LANG & WRITING STYLE IN IT) LETTER BY LETTER LANGUAGES
 
@@ -71,11 +83,7 @@ for letterIndex in range(len(inputString) ):
     if nextLetterToWrite.isspace():
         continue
     
-    if languageToUse == 'GreenRune':
-        identifyingLetterHeight = letterHeight
-    elif languageToUse == 'MinecraftEnchantTable':
-        identifyingLetterHeight = letterHeight
-    elif languageToUse == 'FluxJudonese':
+    if ['Covenant', 'FluxJudonese', 'GreenRune', 'HowToTrainYourDragon', 'MinecraftEnchantTable'].count(languageToUse) == 1:
         identifyingLetterHeight = letterHeight
 
     resetCode = textWriterHelper.goToStartingPoint(language=languageToUse, letter=nextLetterToWrite, identifyingLetterHeight=identifyingLetterHeight, windowWidth=windowWidth, letterIndex=letterIndex, fullWritingLength=len(inputString) )

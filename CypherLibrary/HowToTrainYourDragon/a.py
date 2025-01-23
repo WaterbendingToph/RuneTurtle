@@ -32,7 +32,7 @@ turtle.forward(500)
 turtle.penup()
 turtle.pencolor("blacK")
 
-turtle.goto(-10, -125)
+turtle.goto(0, -125)
 turtle.pendown()
 
 

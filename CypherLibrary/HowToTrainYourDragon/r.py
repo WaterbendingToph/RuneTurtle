@@ -6,13 +6,6 @@ letterWidth = 200
 lineWidth = 20
 letterHeight = 250
 
-obnoxiousVerticalLength = letterHeight / 2 - lineWidth
-topOuterDiagonal = (2 * ( (letterHeight / 4) ** 2) ) ** (0.5)
-topInnerDiagonal =  ( 2 * ( (letterHeight / 4 - lineWidth) ** 2) ) ** (0.5) 
-bottomOuterDiagonal = (2 * ( (letterHeight / 2) ** 2) ) ** (0.5)
-bottomInnerDiagonal = ( ( 2 * (obnoxiousVerticalLength ** 2) ) ** (0.5) )
-
-
 turtle.mode("logo")
 turtle.penup()
 turtle.pencolor("red")
@@ -38,10 +31,16 @@ turtle.forward(500)
 turtle.penup()
 turtle.pencolor("blacK")
 
-turtle.goto(-10, -125)
+turtle.goto(0, -125)
 turtle.pendown()
 
 #START
+obnoxiousVerticalLength = letterHeight / 2 - lineWidth
+topOuterDiagonal = (2 * ( (letterHeight / 4) ** 2) ) ** (0.5)
+topInnerDiagonal =  ( 2 * ( (letterHeight / 4 - lineWidth) ** 2) ) ** (0.5) 
+bottomOuterDiagonal = (2 * ( (letterHeight / 2) ** 2) ) ** (0.5)
+bottomInnerDiagonal = ( ( 2 * (obnoxiousVerticalLength ** 2) ) ** (0.5) )
+
 turtle.begin_fill()
 turtle.setheading(270)
 turtle.forward(lineWidth)

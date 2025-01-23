@@ -7,12 +7,6 @@ lineWidth = 20
 letterHeight = 250
 diagonal = 60
 
-halfVertical = 0.7 * letterHeight
-diagonalLineWidth = lineWidth * 1.5
-verticalStarter = letterHeight / 4
-obnoxiousLineSegment = halfVertical - lineWidth - diagonalLineWidth - verticalStarter
-secondObnoxiousLineSegment = verticalStarter + lineWidth
-
 turtle.mode("logo")
 turtle.penup()
 turtle.pencolor("red")
@@ -38,13 +32,21 @@ turtle.forward(500)
 turtle.penup()
 turtle.pencolor("blacK")
 
-turtle.goto(50, -125)
+turtle.goto(0, -125)
 turtle.pendown()
 
 #START
+halfVertical = 0.7 * letterHeight
+diagonalLineWidth = lineWidth * 1.5
+verticalStarter = letterHeight / 4
+obnoxiousLineSegment = halfVertical - lineWidth - diagonalLineWidth - verticalStarter
+secondObnoxiousLineSegment = verticalStarter + lineWidth
+
+turtle.penup()
+turtle.setheading(90)
+turtle.forward(lineWidth * 2)
+turtle.pendown()
 turtle.begin_fill()
-turtle.setheading(270)
-turtle.forward(lineWidth)
 turtle.setheading(0)
 turtle.forward(verticalStarter)
 turtle.setheading(225)
@@ -91,6 +93,8 @@ turtle.setheading(225)
 turtle.forward(diagonal)
 turtle.setheading(180)
 turtle.forward(secondObnoxiousLineSegment)
+turtle.setheading(270)
+turtle.forward(lineWidth)
 turtle.end_fill()
 #END
 
