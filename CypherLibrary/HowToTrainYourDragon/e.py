@@ -54,7 +54,7 @@ turtle.setheading(90)
 turtle.forward(lineWidth * 2)
 turtle.setheading(0)
 turtle.begin_fill()
-turtle.circle(lineWidth * 1.5, steps=lineWidth * 2)
+turtle.circle(lineWidth * 1.5, steps= int(lineWidth) * 2)
 turtle.end_fill()
 #END
 

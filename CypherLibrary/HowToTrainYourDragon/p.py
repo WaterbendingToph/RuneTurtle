@@ -6,8 +6,6 @@ letterWidth = 200
 lineWidth = 20
 letterHeight = 250
 diagonal = 60
-innerFlushDiagonal =  (2 * ( (letterHeight / 4) ** 2) ) ** (0.5)
-outerFlushDiagonal = innerFlushDiagonal + ( (2 * (lineWidth * 1.5) ** 2) ** (0.5) )
 
 turtle.mode("logo")
 turtle.penup()
@@ -38,6 +36,9 @@ turtle.goto(0, -125)
 turtle.pendown()
 
 #START
+innerFlushDiagonal =  (2 * ( (letterHeight / 4) ** 2) ) ** (0.5)
+outerFlushDiagonal = innerFlushDiagonal + ( (2 * (lineWidth * 1.5) ** 2) ** (0.5) )
+
 turtle.penup()
 turtle.setheading(270)
 turtle.forward(lineWidth * 2)

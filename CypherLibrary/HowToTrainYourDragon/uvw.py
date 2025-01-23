@@ -7,9 +7,6 @@ lineWidth = 20
 letterHeight = 250
 diagonal = 60
 
-outerLine = (2 * (letterHeight ** 2) ) ** (0.5)
-innerLine = (2 * ( (letterHeight - lineWidth - (lineWidth * 1.5) ) ** (2) ) ) ** (0.5)
-
 turtle.mode("logo")
 turtle.penup()
 turtle.pencolor("red")
@@ -39,6 +36,9 @@ turtle.goto(0, -125)
 turtle.pendown()
 
 #START
+outerLine = (2 * (letterHeight ** 2) ) ** (0.5)
+innerLine = (2 * ( (letterHeight - lineWidth - (lineWidth * 1.5) ) ** (2) ) ) ** (0.5)
+
 turtle.penup()
 turtle.setheading(270)
 turtle.forward(letterHeight / 2)
