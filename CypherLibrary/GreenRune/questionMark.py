@@ -25,6 +25,7 @@ turtle.goto(0, 125)
 turtle.pendown()
 
 #START
+triangleLength = ( (4 / 3) * ( (letterHeight / 2) ** 2) ) ** (0.5)
 turtle.setheading(150)
 turtle.forward(triangleLength)
 turtle.setheading(270)

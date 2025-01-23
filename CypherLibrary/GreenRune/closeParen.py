@@ -21,10 +21,15 @@ turtle.forward(500)
 turtle.pencolor("black")
 turtle.penup()
 
-turtle.goto(150, -25)
+turtle.goto(125, -125)
 turtle.pendown()
 
 #START
+turtle.penup()
+turtle.setheading(0)
+turtle.forward(letterHeight / 3)
+turtle.pendown()
+diagonalLength = ( ( ( (1 / 3) * letterHeight) ** 2) * 2) ** (0.5) + letterHeight / 4
 turtle.setheading(180)
 turtle.circle(int(-letterHeight / 3), 145, int(letterHeight / 4) )
 turtle.setheading(330)

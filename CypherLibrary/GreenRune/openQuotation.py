@@ -19,10 +19,14 @@ turtle.forward(500)
 turtle.pencolor("black")
 turtle.penup()
 
-turtle.goto(0, -125)
+turtle.goto(-125, -125)
 turtle.pendown()
 
 #START
+turtle.penup()
+turtle.setheading(90)
+turtle.forward(letterHeight / 2)
+turtle.pendown()
 turtle.setheading(270)
 turtle.circle(-letterHeight / 2, 180, 2)
 #END

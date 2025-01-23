@@ -25,6 +25,7 @@ turtle.goto(-125, 125)
 turtle.pendown()
 
 #START
+diagonalLength = ( (letterHeight) ** 2 + ( ( (3 / 8) * letterHeight) ** 2) ) ** (0.5)
 turtle.setheading(90)
 turtle.forward(letterHeight / 4)
 turtle.setheading(270)
