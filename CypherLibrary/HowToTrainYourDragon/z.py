@@ -38,13 +38,15 @@ turtle.forward(500)
 turtle.penup()
 turtle.pencolor("blacK")
 
-turtle.goto(50, -125)
+turtle.goto(0, -125)
 turtle.pendown()
 
 #START
+turtle.penup()
+turtle.setheading(90)
+turtle.forward(lineWidth * 2)
+turtle.pendown()
 turtle.begin_fill()
-turtle.setheading(270)
-turtle.forward(lineWidth)
 turtle.setheading(0)
 turtle.forward(verticalStarter)
 turtle.setheading(225)
@@ -91,6 +93,8 @@ turtle.setheading(225)
 turtle.forward(diagonal)
 turtle.setheading(180)
 turtle.forward(secondObnoxiousLineSegment)
+turtle.setheading(270)
+turtle.forward(lineWidth)
 turtle.end_fill()
 #END
 
