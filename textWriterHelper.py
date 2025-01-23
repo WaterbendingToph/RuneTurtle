@@ -43,6 +43,13 @@ def goToStartingPoint(language, letter, identifyingLetterHeight, windowWidth, le
         results.append('topLeft = ' + str(topLeft) )
         results.append('topRight = ' + str(topRight) )
 
+    elif language == 'Covenant':
+        letterHeight = identifyingLetterHeight
+        xCoordinate, yCoordiante = -1 * (windowWidth / 2) + (letterHeight / 2) + (letterHeight * letterIndex), -1 * (letterHeight / 2)
+        
+        results.insert(2, 'turtle.setheading(45)')
+        results.insert(3, 'turtle.forward( ( ( (2 * (letterHeight ** 2) ) ** (0.5) ) / 2) - ( (2 * ( (letterHeight / 4) ** 2) ) ** (0.5) ) )')
+
     results[1] = results[1][:-1] + str(xCoordinate) + ',' + str(yCoordiante) + results[1][-1]
     return results
 
@@ -59,6 +66,10 @@ def translateNextLetterToFilename(language, letter):
     if language == 'FluxJudonese':
         FluxJudoneseFileNames = {'a': 'a', 'b':'b', 'c':'c', 'd':'d', 'e':'e', 'f':'f', 'g':'g', 'h':'h', 'i':'i', 'j':'j', 'k':'k', 'l':'l', 'm':'m', 'n':'n', 'o':'o', 'p':'p', 'q':'q', 'r':'r', 's':'s', 't':'t', 'u':'u', 'v':'v', 'w':'w', 'x':'x', 'y':'y', 'z':'z'}
         result = FluxJudoneseFileNames.get(letter)
+
+    if language == 'Covenant':
+        CovenantFileNames = {'a': 'a', 'b':'b', 'c':'c', 'd':'d', 'e':'e', 'f':'f', 'g':'g', 'h':'h', 'i':'i', 'j':'j', 'k':'k', 'l':'l', 'm':'m', 'n':'n', 'o':'o', 'p':'p', 'q':'q', 'r':'r', 's':'s', 't':'t', 'u':'u', 'v':'v', 'w':'w', 'x':'x', 'y':'y', 'z':'z'}
+        result = CovenantFileNames.get(letter)
 
     if result is None:
         raise ImportError('The letter you are seaching for: ' + letter + ' is not in the language that you provided (' + language + '\'n')
@@ -93,7 +104,7 @@ def makeLanguageUniform(input):
     CCGallifreyanPseudonyms = ['cc']
     CircularGallifreyanPseudonyms = ['cg']
     CisterianNumbersPseudonyms = ['cn', 'cisterian', 'cisteriannumbers', 'cisteriannumber']
-    CovenantPseudonyms = ['co']
+    CovenantPseudonyms = ['co', 'covenant', 'haloaliens', 'halo']
     FluxJudonesePseudonyms = ['fj', 'flux', 'fluxjudonese', 'judonese']
     ForerunnerPrometheanPseudonyms = ['fp']
     GreenRunePseudonyms = ['gr', 'greenrune']

@@ -62,6 +62,11 @@ if languageToUse == 'FluxJudonese':
     output.write('direction = ' + str(direction) + '\n\n')
     output.write(textWriterHelper.printExtraFilePrimerMaterial(language=languageToUse) )
 
+if languageToUse == 'Covenant':
+    output.write('letterHeight = ' + str(letterHeight) + '\n')
+    output.write('largeSide = ' + str(letterHeight / 2) + '\n')
+    output.write('smallerSide = ' + str(letterHeight / 5) + '\n')
+
 #   WRITE OUT THE TEXT AS A WHOLE - TWO SECTIONS, 1 FOR WRITING EACH LETTER
 #  1 FOR WRITING EACH WORD (BASED ON LANG & WRITING STYLE IN IT) LETTER BY LETTER LANGUAGES
 
@@ -71,11 +76,7 @@ for letterIndex in range(len(inputString) ):
     if nextLetterToWrite.isspace():
         continue
     
-    if languageToUse == 'GreenRune':
-        identifyingLetterHeight = letterHeight
-    elif languageToUse == 'MinecraftEnchantTable':
-        identifyingLetterHeight = letterHeight
-    elif languageToUse == 'FluxJudonese':
+    if ['Covenant', 'FluxJudonese', 'GreenRune', 'MinecraftEnchantTable'].count(languageToUse) == 1:
         identifyingLetterHeight = letterHeight
 
     resetCode = textWriterHelper.goToStartingPoint(language=languageToUse, letter=nextLetterToWrite, identifyingLetterHeight=identifyingLetterHeight, windowWidth=windowWidth, letterIndex=letterIndex, fullWritingLength=len(inputString) )
