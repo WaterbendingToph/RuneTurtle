@@ -18,6 +18,7 @@ import textWriterHelper
         Make it so you can put in the language w/out precisely matching capitalization of the file structure for that language (changes to getCodeForLetter() )
         Pull out the language check everywhere to use function 2 return an enum @ startup
         Allow Flux Judonese to write in its other directions using the direction optional argument and variable - letters will handle directional change on their end 4 writing specifics
+        Make the 'hidden' letters of languages accessible: letters with dots and whitespace of Artemis Fowl, end quotes of GreenRune
 '''
 #   READ IN THE STUFF TO TRANSLATE
 if len(sys.argv) <= 4:
