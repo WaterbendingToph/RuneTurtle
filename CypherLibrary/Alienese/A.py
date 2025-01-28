@@ -35,7 +35,28 @@ turtle.pendown()
 
 
 #START
+turtle.penup()
+turtle.goto(turtle.position()[0], turtle.position()[1] + letterHeight / 2)
+turtle.pendown()
+turtle.setheading(270)
+turtle.begin_fill()
+turtle.circle(dotWidth)
+turtle.end_fill()
 
+turtle.penup()
+endPointYCoordinate = turtle.position()[1] - letterHeight
+if dotWidth * 3 < letterHeight * (2/3):
+    turtle.goto(turtle.position()[0], turtle.position()[1] - dotWidth * 3)
+else:
+    turtle.goto(turtle.position()[0], turtle.position()[1] - dotWidth * 2)
+turtle.pendown()
+turtle.goto(turtle.position()[0], endPointYCoordinate)
+
+turtle.penup()
+turtle.goto(turtle.position()[0] - letterHeight / 2, turtle.position()[1] + letterHeight / 3)
+turtle.pendown()
+turtle.setheading(120)
+turtle.circle(letterHeight, 60)
 #END
 
 turtle.done()

@@ -35,7 +35,10 @@ turtle.pendown()
 
 
 #START
-
+turtle.begin_fill()
+turtle.setheading(270)
+turtle.circle(dotWidth)
+turtle.end_fill()
 #END
 
 turtle.done()

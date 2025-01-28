@@ -35,7 +35,21 @@ turtle.pendown()
 
 
 #START
+turtle.penup()
+turtle.setheading(0)
+turtle.forward(letterHeight / 2)
+turtle.pendown()
+turtle.setheading(270)
+turtle.circle(letterHeight / 2)
 
+turtle.penup()
+turtle.setheading(150)
+turtle.forward(letterHeight / 5)
+turtle.pendown()
+turtle.begin_fill()
+turtle.setheading(270)
+turtle.circle(dotWidth)
+turtle.end_fill()
 #END
 
 turtle.done()
