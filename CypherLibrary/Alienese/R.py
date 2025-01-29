@@ -35,7 +35,18 @@ turtle.pendown()
 
 
 #START
+turtle.penup()
+turtle.goto(turtle.position()[0] - letterHeight / 2, turtle.position()[1] - letterHeight / 2)
+turtle.pendown()
+turtle.goto(turtle.position()[0] + letterHeight, turtle.position()[1] )
+turtle.goto(turtle.position()[0] - letterHeight / 2, turtle.position()[1] + letterHeight * (2 / 3) )
+turtle.goto(turtle.position()[0] - letterHeight / 2, turtle.position()[1] - letterHeight * (2 / 3) )
 
+turtle.penup()
+turtle.goto(turtle.position()[0] + letterHeight / 2, turtle.position()[1] + letterHeight)
+turtle.pendown()
+turtle.setheading(270)
+turtle.circle(letterHeight / 4)
 #END
 
 turtle.done()
