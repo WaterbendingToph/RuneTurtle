@@ -2,19 +2,8 @@ import turtle
 window = turtle.Screen()
 window.setup(width = 600, height=600)
 
-letterHeight = 400
-lineWidth = 20
-rightWall = 0
-leftX = 0
-leftY = 0
-rightX = 0
-rightY = 0
-initialX = 0
-initialY = 0
-endPointX = 0
-endPointY = 0
-verticalOffset = 0
-horizontalOffset = 0
+letterHeight = 500
+dotWidth = letterHeight / 20
 
 turtle.mode("logo")
 turtle.penup()
@@ -41,28 +30,15 @@ turtle.forward(600)
 turtle.penup()
 turtle.pencolor("blacK")
 
-turtle.goto(-lineWidth / 2, -letterHeight / 2)
+turtle.goto(0, 0)
 turtle.pendown()
 
 
 #START
-rightY = turtle.ycor()
-rightX = turtle.xcor()
-leftX = turtle.xcor() - lineWidth
-
-turtle.begin_fill()
-turtle.setheading(300)
-while turtle.xcor() > leftX:
-    turtle.forward(1)
-turtle.setheading(60)
-while turtle.xcor() < rightX:
-    turtle.forward(1)
-turtle.setheading(180)
-while turtle.ycor() > rightY:
-    turtle.forward(1)
-turtle.end_fill()
-
-rightWall = turtle.xcor()
+turtle.goto(turtle.position()[0] - letterHeight / 4, turtle.position()[1] )
+turtle.goto(turtle.position()[0] + letterHeight / 2, turtle.position()[1] )
+turtle.goto(turtle.position()[0], turtle.position()[1] + letterHeight / 4)
+turtle.goto(turtle.position()[0], turtle.position()[1] - letterHeight / 2)
 #END
 
 turtle.done()
