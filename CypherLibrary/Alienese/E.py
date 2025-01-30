@@ -34,7 +34,7 @@ turtle.goto(0, 0)
 turtle.pendown()
 
 
-#START
+#START - NEED TO REDO THIS FILE AND MAKE THE DIAMOND SHAPE ROUNDED LINES
 turtle.penup()
 turtle.goto(turtle.position()[0], turtle.position()[1] + letterHeight / 2)
 turtle.pendown()
@@ -42,14 +42,18 @@ turtle.begin_fill()
 turtle.setheading(270)
 turtle.circle(dotWidth)
 turtle.end_fill()
-turtle.goto(turtle.position()[0] - letterHeight / 4, turtle.position()[1] - letterHeight / 2)
-turtle.goto(turtle.position()[0] + letterHeight / 4, turtle.position()[1] - letterHeight / 2)
+turtle.setheading(180)
+turtle.circle(-letterHeight * (3 / 4), 42)
+turtle.setheading(318)
+turtle.circle(letterHeight * (3 / 4), -42)
 turtle.begin_fill()
 turtle.setheading(90)
 turtle.circle(dotWidth)
 turtle.end_fill()
-turtle.goto(turtle.position()[0] + letterHeight / 4, turtle.position()[1] + letterHeight / 2)
-turtle.goto(turtle. position()[0] - letterHeight / 4, turtle. position()[1] + letterHeight / 2)
+turtle.setheading(0)
+turtle.circle(-letterHeight * (3 / 4), 42)
+turtle.setheading(138)
+turtle.circle(letterHeight * (3 / 4), -42)
 #END
 
 turtle.done()
