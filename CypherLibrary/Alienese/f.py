@@ -2,13 +2,9 @@ import turtle
 window = turtle.Screen()
 window.setup(width = 600, height=600)
 
-letterHeight = 400
-lineWidth = 20
-rightWall = 0
-leftX = 0
-leftY = 0
-rightX = 0
-rightY = 0
+letterHeight = 500
+dotWidth = letterHeight / 20
+
 
 turtle.mode("logo")
 turtle.penup()
@@ -18,76 +14,29 @@ turtle.pendown()
 turtle.setheading(90)
 turtle.forward(600)
 turtle.penup()
-turtle.goto(250, -300)
+turtle.goto(166, -300)
 turtle.pendown()
 turtle.setheading(0)
 turtle.forward(600)
 turtle.penup()
-turtle.goto(300, 250)
+turtle.goto(300, 83)
 turtle.pendown()
 turtle.setheading(270)
 turtle.forward(600)
 turtle.penup()
-turtle.goto(-250, 300)
+turtle.goto(-166, 300)
 turtle.pendown()
 turtle.setheading(180)
 turtle.forward(600)
 turtle.penup()
 turtle.pencolor("blacK")
 
-turtle.goto(-lineWidth / 2, -letterHeight / 2)
+turtle.goto(0, -letterHeight / 2)
 turtle.pendown()
 
 
 #START
-turtle.begin_fill()
-turtle.setheading(90)
-turtle.forward(letterHeight / 2 - lineWidth)
-turtle.setheading(150)
-turtle.forward(lineWidth / 2)
-turtle.setheading(90)
-turtle.forward(lineWidth)
-turtle.setheading(330)
-turtle.forward(lineWidth * 1.5)
-turtle.setheading(270)
-turtle.forward(letterHeight / 2 - lineWidth)
-turtle.setheading(330)
-turtle.forward(lineWidth)
-ReturnPoint = turtle.position()
-turtle.setheading(30)
-turtle.forward(letterHeight / 2 - lineWidth)
-turtle.setheading(270)
-turtle.forward(lineWidth)
-turtle.setheading(210)
-turtle.forward(letterHeight / 2 - lineWidth)
-turtle.setheading(150)
-turtle.forward(lineWidth * 2)
-turtle.end_fill()
 
-turtle.penup()
-turtle.goto(ReturnPoint)
-turtle.setheading(90)
-turtle.forward(lineWidth)
-turtle.pendown()
-turtle.begin_fill()
-ReturnPoint = turtle.position()
-turtle.forward(letterHeight / 2 - lineWidth * 2)
-turtle.setheading(30)
-turtle.forward(lineWidth)
-rightWall = turtle.xcor()
-turtle.setheading(330)
-turtle.forward(letterHeight / 2 - lineWidth * 3)
-turtle.setheading(210)
-turtle.forward(lineWidth)
-turtle.setheading(150)
-turtle.forward(letterHeight / 2 - lineWidth * 4)
-turtle.setheading(270)
-turtle.forward(letterHeight / 2 - lineWidth * 3.5)
-turtle.setheading(0)
-turtle.forward(lineWidth)
-turtle.setheading(210)
-turtle.forward(turtle.distance(ReturnPoint) )
-turtle.end_fill()
 #END
 
 turtle.done()
