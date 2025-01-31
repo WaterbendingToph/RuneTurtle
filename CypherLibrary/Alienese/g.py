@@ -4,7 +4,7 @@ window.setup(width = 600, height=600)
 
 letterHeight = 500
 dotWidth = letterHeight / 20
-
+lowerLetterHeight = letterHeight * (2 / 3)
 
 turtle.mode("logo")
 turtle.penup()
