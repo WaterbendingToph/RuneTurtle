@@ -4,7 +4,7 @@ window.setup(width = 600, height=600)
 
 letterHeight = 500
 dotWidth = letterHeight / 20
-
+lowerLetterHeight = letterHeight * (2 / 3)
 
 turtle.mode("logo")
 turtle.penup()
@@ -36,7 +36,19 @@ turtle.pendown()
 
 
 #START
+# turtle.penup()
+# turtle.goto(turtle.position()[0] - lowerLetterHeight / 2, turtle.position()[1] - lowerLetterHeight / 2)
+# turtle.pendown()
+turtle.goto(turtle.position()[0] + lowerLetterHeight / 2, turtle.position()[1] )
+turtle.goto(turtle.position()[0] - lowerLetterHeight / 2, turtle.position()[1] + lowerLetterHeight * (2 / 3) )
+turtle.goto(turtle.position()[0] - lowerLetterHeight / 2, turtle.position()[1] - lowerLetterHeight * (2 / 3) )
+turtle.goto(turtle.position()[0] + lowerLetterHeight / 2, turtle.position()[1] )
 
+turtle.penup()
+turtle.goto(turtle.position()[0], turtle.position()[1] + lowerLetterHeight)
+turtle.pendown()
+turtle.setheading(270)
+turtle.circle(lowerLetterHeight / 4)
 #END
 
 turtle.done()

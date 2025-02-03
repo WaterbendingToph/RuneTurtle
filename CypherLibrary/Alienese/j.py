@@ -2,9 +2,9 @@ import turtle
 window = turtle.Screen()
 window.setup(width = 600, height=600)
 
-letterHeight = 500
-dotWidth = letterHeight / 20
-
+lowerLetterHeight = 500
+dotWidth = lowerLetterHeight / 20
+lowerLetterHeight = lowerLetterHeight * (2 / 3)
 
 turtle.mode("logo")
 turtle.penup()
@@ -31,12 +31,37 @@ turtle.forward(600)
 turtle.penup()
 turtle.pencolor("blacK")
 
-turtle.goto(0, -letterHeight / 2)
+turtle.goto(0, -lowerLetterHeight / 2)
 turtle.pendown()
 
 
 #START
+turtle.penup()
+turtle.goto(turtle.position()[0], turtle.position()[1] + dotWidth)
+turtle.pendown()
 
+turtle.goto(turtle.position()[0] - lowerLetterHeight / 2, turtle.position()[1] + lowerLetterHeight / 4)
+turtle.begin_fill()
+turtle.setheading(180)
+turtle.circle(dotWidth)
+turtle.end_fill()
+turtle.goto(turtle.position()[0] + lowerLetterHeight, turtle.position()[1] - lowerLetterHeight / 2)
+turtle.begin_fill()
+turtle.setheading(0)
+turtle.circle(dotWidth)
+turtle.end_fill()
+
+turtle.penup()
+turtle.goto(turtle.position()[0], turtle.position()[1] + lowerLetterHeight / 2)
+turtle.pendown()
+turtle.begin_fill()
+turtle.circle(dotWidth)
+turtle.end_fill()
+turtle.goto(turtle.position()[0] - lowerLetterHeight, turtle.position()[1] - lowerLetterHeight / 2)
+turtle.begin_fill()
+turtle.setheading(180)
+turtle.circle(dotWidth)
+turtle.end_fill()
 #END
 
 turtle.done()

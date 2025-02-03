@@ -4,7 +4,7 @@ window.setup(width = 600, height=600)
 
 letterHeight = 500
 dotWidth = letterHeight / 20
-
+lowerLetterHeight = letterHeight * (2 / 3)
 
 turtle.mode("logo")
 turtle.penup()
@@ -36,7 +36,44 @@ turtle.pendown()
 
 
 #START
+turtle.goto(turtle.position()[0], turtle.position()[1] + lowerLetterHeight)
+turtle.begin_fill()
+turtle.setheading(270)
+turtle.circle(dotWidth)
+turtle.end_fill()
+turtle.goto(turtle.position()[0], turtle.position()[1] - lowerLetterHeight)
+turtle.begin_fill()
+turtle.setheading(90)
+turtle.circle(dotWidth)
+turtle.end_fill()
 
+turtle.penup()
+turtle.goto(turtle.position()[0] + lowerLetterHeight / 2, turtle.position()[1] + lowerLetterHeight / 3)
+turtle.pendown()
+turtle.begin_fill()
+turtle.setheading(288.5 + 90)
+turtle.circle(dotWidth)
+turtle.end_fill()
+turtle.setheading(288.5)
+turtle.forward( ( (lowerLetterHeight / 3) ** 2 + (lowerLetterHeight ) ** 2) ** (1 / 2) )
+turtle.begin_fill()
+turtle.setheading(288.5 - 90 -37)
+turtle.circle(dotWidth)
+turtle.end_fill()
+
+turtle.penup()
+turtle.goto(turtle.position()[0] + lowerLetterHeight, turtle.position()[1] )
+turtle.pendown()
+turtle.begin_fill()
+turtle.setheading(288.5  + 90)
+turtle.circle(dotWidth)
+turtle.end_fill()
+turtle.setheading(288.5 - 37)
+turtle.forward( ( (lowerLetterHeight / 3) ** 2 + (lowerLetterHeight ) ** 2) ** (1 / 2) )
+turtle.begin_fill()
+turtle.setheading(288.5 + 270 - 37)
+turtle.circle(dotWidth)
+turtle.end_fill()
 #END
 
 turtle.done()
