@@ -18,10 +18,10 @@ import textWriterHelper
         Make it so you can put in the language w/out precisely matching capitalization of the file structure for that language (changes to getCodeForLetter() )
         Pull out the language check everywhere to use function 2 return an enum @ startup
         Allow Flux Judonese to write in its other directions using the direction optional argument and variable - letters will handle directional change on their end 4 writing specifics
-        Make the 'hidden' letters of languages accessible: letters with dots and whitespace of Artemis Fowl, end quotes of GreenRune
+        Make the 'hidden' letters of languages accessible: letters with dots and whitespace of Artemis Fowl, end quotes of GreenRune and Alienese
 '''
 #   READ IN THE STUFF TO TRANSLATE
-if len(sys.argv) <= 4:
+if len(sys.argv) <= 3:
     raise RuntimeError('This command should be run with multiple arguments. The first for a text file of input text, the second with the name of the output python file. The third is language for text, and fourth is language for numbers if not included in third. There may be more optional arguments after this based on the languages used.')
 
 inputFileName = str(sys.argv[1] )
@@ -37,7 +37,12 @@ inputString = inputString[0][0]
 outputFileName = str(sys.argv[2] )
 languageToUse = textWriterHelper.makeLanguageUniform(str(sys.argv[3] ) )
 writingType = 'individual'      #should be either 'individual' or 'compound' and used only for languages like GreenRune that can be written in either format
-numeralSystemToUse = str(sys.argv[4] )
+if textWriterHelper.languageIncludesNumbers(languageToUse) == False:
+    if len(sys.argv) < 5:
+        raise RuntimeError('The language specified should (for now) contain an option for numbers or a system for numbers like Cisterian Numbers should be used as a fourth argument. In later versions of this program this check for numbers will only occur when the file contains numbers.') 
+    numeralSystemToUse = str(sys.argv[4] )
+else:
+    numeralSystemToUse = languageToUse
 output = open(outputFileName, 'w')
 windowHeight, windowWidth = 600, 1000
 writingSpeed = 0
@@ -47,14 +52,15 @@ greenRuneWritingType, letterHeight = '', int(windowWidth / (len(inputString) + 1
 bottomLeft, bottomRight, topLeft, topRight, length = (0,0), (0,0), (0,0), (0,0), letterHeight / 5           # from Minecraft Enchant Table
 direction = 0                                                                                               # from Flux Judonese
 lineWidth = letterHeight / 10                                                                               # from HowToTrainYourDragon
+dotWidth, lowerLetterHeight = letterHeight / 20, letterHeight * (2 / 3)                                                                  # from Alienese
 
 #   SETUP THE STARTING ENV 
 output.write('import turtle\nwindow = turtle.Screen()\nwindow.setup(width=' + str(windowWidth) + ', height=' + str(windowHeight) + ')\nturtle.mode("logo")\nturtle.speed(' + str(writingSpeed) + ')\n')
 
+#   MAKE THIS WHOLE SECTION A CALL TO A NEW METHOD IN textWriterHelper.py THAT WILL PRINT OUT THE NECESSARY LINES 4 THE LANGUAGE CHOSEN TO TAKE ITS LOGIC OUT OF HERE + PAIR THIS WITH THE ABOVE LINE SETTING UP THE INITIAL ENVIRONMENT
 if languageToUse == 'GreenRune':
     if greenRuneWritingType == '':
         greenRuneWritingType = 'sequential'
-    inputString = inputString.lower()
     output.write('letterHeight = ' + str(letterHeight) + '\n\n')
 
 if languageToUse == 'MinecraftEnchantTable':
@@ -74,6 +80,11 @@ if languageToUse == 'HowToTrainYourDragon':
     output.write('lineWidth = ' + str(lineWidth) + '\n')
     output.write('diagonal = ' + str(lineWidth * 3) + '\n')
 
+if languageToUse == 'Alienese':
+    output.write('letterHeight = ' + str(letterHeight) + '\n')
+    output.write('dotWidth = ' + str(dotWidth) + '\n')
+    output.write('lowerLetterHeight = ' + str(lowerLetterHeight) + '\n')
+
 #   WRITE OUT THE TEXT AS A WHOLE - TWO SECTIONS, 1 FOR WRITING EACH LETTER
 #  1 FOR WRITING EACH WORD (BASED ON LANG & WRITING STYLE IN IT) LETTER BY LETTER LANGUAGES
 
@@ -83,7 +94,7 @@ for letterIndex in range(len(inputString) ):
     if nextLetterToWrite.isspace():
         continue
     
-    if ['Covenant', 'FluxJudonese', 'GreenRune', 'HowToTrainYourDragon', 'MinecraftEnchantTable'].count(languageToUse) == 1:
+    if ['Covenant', 'FluxJudonese', 'GreenRune', 'HowToTrainYourDragon', 'MinecraftEnchantTable', 'Alienese'].count(languageToUse) == 1:
         identifyingLetterHeight = letterHeight
 
     resetCode = textWriterHelper.goToStartingPoint(language=languageToUse, letter=nextLetterToWrite, identifyingLetterHeight=identifyingLetterHeight, windowWidth=windowWidth, letterIndex=letterIndex, fullWritingLength=len(inputString) )
