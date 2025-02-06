@@ -8,6 +8,7 @@ def goToStartingPoint(language, letter, identifyingLetterHeight, windowWidth, le
     if language == 'GreenRune':
         # letterWidth == letterHeight for GreenRune.
         letterHeight = identifyingLetterHeight
+        letter = letter.lower()
         yCoordiante = 0
         if ['b','c','k','r','(',')','\''].count(letter) == 1:
             yCoordiante -= letterHeight / 2
@@ -54,11 +55,24 @@ def goToStartingPoint(language, letter, identifyingLetterHeight, windowWidth, le
         letterHeight = identifyingLetterHeight
         xCoordinate, yCoordiante = -1 * (windowWidth / 2) + (letterHeight / 2) + (letterHeight * letterIndex), -1 * (letterHeight / 2)
 
+    elif language == 'Alienese':
+        letterHeight = identifyingLetterHeight
+        xCoordinate = -1 * (windowWidth / 2) + letterHeight + (letterHeight * letterIndex)
+        if letter.islower():
+            yCoordiante = -1 * letterHeight / 2
+        else:
+            yCoordiante = 0
+
     results[1] = results[1][:-1] + str(xCoordinate) + ',' + str(yCoordiante) + results[1][-1]
     return results
 
 def translateNextLetterToFilename(language, letter):
+    if language == 'Alienese':
+        AlieneseFileNames = {'a': 'a', 'b':'b', 'c':'c', 'd':'d', 'e':'e', 'f':'f', 'g':'g', 'h':'h', 'i':'i', 'j':'j', 'k':'k', 'l':'l', 'm':'m', 'n':'n', 'o':'o', 'p':'p', 'q':'q', 'r':'r', 's':'s', 't':'t', 'u':'u', 'v':'v', 'w':'w', 'x':'x', 'y':'y', 'z':'z', 'A':'A', 'B':'B', 'C':'C', 'D':'D', 'E':'E', 'F':'F', 'G':'G', 'H':'H', 'I':'I', 'J':'J', 'K':'K', 'L':'L', 'M':'M', 'N':'N', 'O':'O', 'P':'P', 'Q':'Q', 'R':'R', 'S':'S', 'T':'T', 'U':'U', 'V':'V', 'W':'W', 'X':'X', 'Y':'Y', 'Z':'Z', '0':'0', '1':'1', '2':'2', '3':'3', '4':'4', '5':'5', '6':'6', '7':'7', '8':'8', '9':'9', ':':'colon', '"':'doubleQuoteOpen', '!':'exclamationPoint', '-':'hyphen', '.':'period', ';':'semiColon', "'":'singleQuote'}
+        result = AlieneseFileNames.get(letter)
+
     letter = letter.lower()
+
     if language == 'GreenRune':
         GreenRuneLetterFileNames = {'a': 'a', 'b':'b', 'c':'c', 'd':'d', 'e':'e', 'f':'f', 'g':'g', 'h':'h', 'i':'i', 'j':'j', 'k':'k', 'l':'l', 'm':'m', 'n':'n', 'o':'o', 'p':'p', 'q':'q', 'r':'r', 's':'s', 't':'t', 'u':'u', 'v':'v', 'w':'w', 'x':'x', 'y':'y', 'z':'z', ')':'closeParen', '\'':'openQuotation', '(':'openParen', '?':'questionMark', ',':'comma'}
         result = GreenRuneLetterFileNames.get(letter)
@@ -107,7 +121,7 @@ def getCodeForLetter(language, letter, writingType):
 
 def makeLanguageUniform(input):
     input = input.lower()
-    AlienesePseudonyms = ['al']
+    AlienesePseudonyms = ['al', 'fa', 'alienese', 'futurama']
     ArtemisFowlPseudonyms = ['af']
     CCGallifreyanPseudonyms = ['cc']
     CircularGallifreyanPseudonyms = ['cg']
@@ -128,3 +142,12 @@ def makeLanguageUniform(input):
 def printExtraFilePrimerMaterial(language):
     with open(os.path.join(os.path.dirname(os.path.abspath(__file__) ), 'CypherLibrary/' + language + '/encodedTextPrimerFile.txt'), 'r' ) as x:
         return x.read()
+    
+def languageIncludesNumbers(language):
+    languagesThatSupportNumbers = ['Alienese', 'CisterianNumbers', 'ForerunnerPromethean']
+    # for index in range(len(languagesThatSupportNumbers) ):
+    #     if languagesThatSupportNumbers.count(input) == 1:
+    #         return True
+    if language in languagesThatSupportNumbers:
+        return True
+    return False
