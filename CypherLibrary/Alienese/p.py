@@ -46,6 +46,11 @@ turtle.setheading(0)
 turtle.circle(lowerLetterHeight * (2 / 3), 30)
 turtle.circle(lowerLetterHeight * (1 / 3), 120)
 turtle.circle(lowerLetterHeight * (2 / 3), 30)
+turtle.begin_fill()
+turtle.goto(turtle.position()[0], turtle.position()[1] + dotWidth)
+turtle.setheading(270)
+turtle.circle(dotWidth)
+turtle.end_fill()
 #END
 
 turtle.done()

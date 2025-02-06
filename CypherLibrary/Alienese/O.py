@@ -52,8 +52,9 @@ turtle.setheading(270 + 23)
 turtle.forward(letterHeight / 3)
 turtle.circle(-letterHeight / 3, 240)
 turtle.circle(-letterHeight * (3 / 12), 90)
-turtle.circle(-letterHeight * (3 / 24), 90)
-turtle.circle(-letterHeight * (3 / 24), 90)
+turtle.circle(-letterHeight * (3 / 16), 90)
+turtle.circle(-letterHeight * (3 / 20), 90)
+turtle.circle(-letterHeight * (3 / 24), 110)
 #END
 
 turtle.done()
