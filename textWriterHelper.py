@@ -151,3 +151,15 @@ def languageIncludesNumbers(language):
     if language in languagesThatSupportNumbers:
         return True
     return False
+
+def setupStartingEnvironment(outputStream, language, inputTextLength, options=[] ):
+    # OPTIONS FORMATTING: [windowWidth, windowHeight, writingSpeed, letterHeight, [language specific variables, standardized to each language, new vars 4 which go @ end] ]
+    defaultOptions = [600, 1000, 0, [] ]
+    defaultOptions.insert(3, int(defaultOptions[0] / len(inputTextLength) + 1) )
+    if len(options) == 0:           # HOW DO I IMPLEMENT THIS SO THAT SOME OPTIONS CAN BE SPECIFIED AND HANDLED ELEGANTLY, DICTIONARY W/ KNOWN KEYS OF 1 / SETTING?
+        options = defaultOptions
+    
+
+
+
+    return
