@@ -152,14 +152,52 @@ def languageIncludesNumbers(language):
         return True
     return False
 
-def setupStartingEnvironment(outputStream, language, inputTextLength, options=[] ):
-    # OPTIONS FORMATTING: [windowWidth, windowHeight, writingSpeed, letterHeight, [language specific variables, standardized to each language, new vars 4 which go @ end] ]
-    defaultOptions = [600, 1000, 0, [] ]
-    defaultOptions.insert(3, int(defaultOptions[0] / len(inputTextLength) + 1) )
-    if len(options) == 0:           # HOW DO I IMPLEMENT THIS SO THAT SOME OPTIONS CAN BE SPECIFIED AND HANDLED ELEGANTLY, DICTIONARY W/ KNOWN KEYS OF 1 / SETTING?
+def setupStartingEnvironment(outputStream, language, inputTextLength, options={} ):
+    defaultOptions = {'windowWidth':1000, 'windowHeight':600, 'writingSpeed':0, 'letterHeight':1, 'writingType':'individual'}
+    if len(options) == 0:           
         options = defaultOptions
+    else:
+        for essentialOption in defaultOptions:
+            if essentialOption not in options.keys():
+                options.update( {essentialOption:defaultOptions.get(essentialOption) } )
+    if defaultOptions.get('writingSpeed') > 10:
+        defaultOptions.update( {'writingSpeed':10} )
     
 
+    outputStream.write('import turtle\nwindow = turtle.Screen()\nwindow.setup(width=' + str(options.get('windowWidth') ) + ', height=' + str(options.get('windowHeight') ) + ')\nturtle.mode("logo")\nturtle.speed(' + str(options.get('writingSpeed') ) + ')\n')
 
+    letterHeight = int(options.get('windowWidth') / (inputTextLength + 1) )
+    specificVariables = {'letterHeight':letterHeight, 'windowHeight':options.get('windowHeight'), 'windowWidth':options.get('windowWidth') }
+    specificVariables.update( {} )
 
-    return
+    if language == 'GreenRune':
+        outputStream.write('letterHeight = ' + str(letterHeight) + '\n\n')
+
+    if language == 'MinecraftEnchantTable':
+        length = letterHeight / 5
+        outputStream.write('length = ' + str(length) + '\n\n')
+
+    if language == 'FluxJudonese':
+        direction = 0
+        outputStream.write('direction = ' + str(direction) + '\n\n')
+        outputStream.write(printExtraFilePrimerMaterial(language=language) )
+
+    if language == 'Covenant':
+        outputStream.write('letterHeight = ' + str(letterHeight) + '\n')
+        outputStream.write('largeSide = ' + str(letterHeight / 2) + '\n')
+        outputStream.write('smallerSide = ' + str(letterHeight / 5) + '\n')
+
+    if language == 'HowToTrainYourDragon':
+        lineWidth = letterHeight / 10  
+        outputStream.write('letterHeight = ' + str(letterHeight) + '\n')
+        outputStream.write('lineWidth = ' + str(lineWidth) + '\n')
+        outputStream.write('diagonal = ' + str(lineWidth * 3) + '\n')
+
+    if language == 'Alienese':
+        dotWidth, lowerLetterHeight = letterHeight / 20, letterHeight * (2 / 3)  
+        outputStream.write('letterHeight = ' + str(letterHeight) + '\n')
+        outputStream.write('dotWidth = ' + str(dotWidth) + '\n')
+        outputStream.write('lowerLetterHeight = ' + str(lowerLetterHeight) + '\n')
+
+    return specificVariables
+

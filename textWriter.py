@@ -4,9 +4,6 @@ import textWriterHelper
     TODO:
         Decide on standardized test suite to run through this program (to implement for easy testing later) to check with all major tests and before pushes
         Setup input UI & whatnot to manually make it run whatever input text ya like
-        Change setup env stuff to be determined at runtime
-        |_>Include changing the language version for languages like GreenRune with both letter-by-letter and word-by-word versions
-        |_>Include changing speed of run
         Change how the letters are displayed to make lines of text (at first in only english's way, designed to be changable for languages with other directions of reading)
         Figure out how to make the flags in each letter file to check for and how to pick up on em to in order to pull in letters
         Implement reading in all the non-letter bits of each language as appropriate -> ( and ), etc. + error throwing 4 illegal characters
@@ -19,6 +16,7 @@ import textWriterHelper
         Pull out the language check everywhere to use function 2 return an enum @ startup
         Allow Flux Judonese to write in its other directions using the direction optional argument and variable - letters will handle directional change on their end 4 writing specifics
         Make the 'hidden' letters of languages accessible: letters with dots and whitespace of Artemis Fowl, end quotes of GreenRune and Alienese
+        Make the options fed to this program case insensitive and not requiring camelCase
 '''
 #   READ IN THE STUFF TO TRANSLATE
 if len(sys.argv) <= 3:
@@ -36,7 +34,6 @@ inputString = inputString[0][0]
 
 outputFileName = str(sys.argv[2] )
 languageToUse = textWriterHelper.makeLanguageUniform(str(sys.argv[3] ) )
-writingType = 'individual'      #should be either 'individual' or 'compound' and used only for languages like GreenRune that can be written in either format
 if textWriterHelper.languageIncludesNumbers(languageToUse) == False:
     if len(sys.argv) < 5:
         raise RuntimeError('The language specified should (for now) contain an option for numbers or a system for numbers like Cisterian Numbers should be used as a fourth argument. In later versions of this program this check for numbers will only occur when the file contains numbers.') 
@@ -44,63 +41,34 @@ if textWriterHelper.languageIncludesNumbers(languageToUse) == False:
 else:
     numeralSystemToUse = languageToUse
 output = open(outputFileName, 'w')
-windowHeight, windowWidth = 600, 1000
-writingSpeed = 0
 
-#   ONLY POTENTIALLY USED VARIABLES - 1 line / language instituting them
-greenRuneWritingType, letterHeight = '', int(windowWidth / (len(inputString) + 1) )                         # from GreenRune
-bottomLeft, bottomRight, topLeft, topRight, length = (0,0), (0,0), (0,0), (0,0), letterHeight / 5           # from Minecraft Enchant Table
-direction = 0                                                                                               # from Flux Judonese
-lineWidth = letterHeight / 10                                                                               # from HowToTrainYourDragon
-dotWidth, lowerLetterHeight = letterHeight / 20, letterHeight * (2 / 3)                                                                  # from Alienese
+specifiedOptions = {}
+if len(sys.argv) > 5:
+    for argument in sys.argv[5:]:
+        while argument[0] == '-':
+            argument = argument.removeprefix('-')
+        if argument.count('=') == 0 or not (argument.find('=') > 0 and argument.find('=') < len(argument) - 1):
+            raise RuntimeError('You have entered more than 5 arguments. This should only be done while specifying options, and every one of them should follow the format of "optionName=optionValue". Leading hyphens get ignored, any option not named in camelCase will be ignored, and they must be specified in this name=value format.\n')
+        specifiedOptions.update( {argument[:argument.find('=') ] : int(argument[argument.find('=') + 1: ] ) } )
 
-#   SETUP THE STARTING ENV 
-output.write('import turtle\nwindow = turtle.Screen()\nwindow.setup(width=' + str(windowWidth) + ', height=' + str(windowHeight) + ')\nturtle.mode("logo")\nturtle.speed(' + str(writingSpeed) + ')\n')
 
-#   MAKE THIS WHOLE SECTION A CALL TO A NEW METHOD IN textWriterHelper.py THAT WILL PRINT OUT THE NECESSARY LINES 4 THE LANGUAGE CHOSEN TO TAKE ITS LOGIC OUT OF HERE + PAIR THIS WITH THE ABOVE LINE SETTING UP THE INITIAL ENVIRONMENT
-if languageToUse == 'GreenRune':
-    if greenRuneWritingType == '':
-        greenRuneWritingType = 'sequential'
-    output.write('letterHeight = ' + str(letterHeight) + '\n\n')
-
-if languageToUse == 'MinecraftEnchantTable':
-    output.write('length = ' + str(length) + '\n\n')
-
-if languageToUse == 'FluxJudonese':
-    output.write('direction = ' + str(direction) + '\n\n')
-    output.write(textWriterHelper.printExtraFilePrimerMaterial(language=languageToUse) )
-
-if languageToUse == 'Covenant':
-    output.write('letterHeight = ' + str(letterHeight) + '\n')
-    output.write('largeSide = ' + str(letterHeight / 2) + '\n')
-    output.write('smallerSide = ' + str(letterHeight / 5) + '\n')
-
-if languageToUse == 'HowToTrainYourDragon':
-    output.write('letterHeight = ' + str(letterHeight) + '\n')
-    output.write('lineWidth = ' + str(lineWidth) + '\n')
-    output.write('diagonal = ' + str(lineWidth * 3) + '\n')
-
-if languageToUse == 'Alienese':
-    output.write('letterHeight = ' + str(letterHeight) + '\n')
-    output.write('dotWidth = ' + str(dotWidth) + '\n')
-    output.write('lowerLetterHeight = ' + str(lowerLetterHeight) + '\n')
 
 #   WRITE OUT THE TEXT AS A WHOLE - TWO SECTIONS, 1 FOR WRITING EACH LETTER
 #  1 FOR WRITING EACH WORD (BASED ON LANG & WRITING STYLE IN IT) LETTER BY LETTER LANGUAGES
 
-codeToWriteFullSentence = []
+codeToWriteFullSentence, specificVariables = [], textWriterHelper.setupStartingEnvironment(output, languageToUse, len(inputString), specifiedOptions )
 for letterIndex in range(len(inputString) ):
     nextLetterToWrite = inputString[letterIndex]
     if nextLetterToWrite.isspace():
         continue
     
     if ['Covenant', 'FluxJudonese', 'GreenRune', 'HowToTrainYourDragon', 'MinecraftEnchantTable', 'Alienese'].count(languageToUse) == 1:
-        identifyingLetterHeight = letterHeight
+        identifyingLetterHeight = specificVariables.get('letterHeight')
 
-    resetCode = textWriterHelper.goToStartingPoint(language=languageToUse, letter=nextLetterToWrite, identifyingLetterHeight=identifyingLetterHeight, windowWidth=windowWidth, letterIndex=letterIndex, fullWritingLength=len(inputString) )
+    resetCode = textWriterHelper.goToStartingPoint(language=languageToUse, letter=nextLetterToWrite, identifyingLetterHeight=identifyingLetterHeight, windowWidth=specificVariables.get('windowWidth'), letterIndex=letterIndex, fullWritingLength=len(inputString) )
 
     # PULL UP THE CODE FOR THIS LETTER & RESETTING AFTERWARDS
-    nextLettersCode = textWriterHelper.getCodeForLetter(language=languageToUse, letter=nextLetterToWrite, writingType=writingType)
+    nextLettersCode = textWriterHelper.getCodeForLetter(language=languageToUse, letter=nextLetterToWrite, writingType=specificVariables.get('writingType') )
 
     # ADD ALL THIS CODE TO THE BIG LIST
     for line in resetCode:
