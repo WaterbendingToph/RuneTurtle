@@ -139,6 +139,16 @@ def makeLanguageUniform(input):
             return allLanguageFileNames[index]
     raise RuntimeError('This command should be run with multiple arguments. The first for a text file of input text, the second with the name of the output python file. The third is language for text, and fourth is language for numbers if not included in third. There may be more optional arguments after this based on the languages used.')
 
+def makeOptionUniform(option):
+    option = option.lower()
+    recognizedOptions = {'windowwidth':'windowWidth', 'windowheight':'windowHeight', 'writingspeed':'writingSpeed', 'letterheight':'letterHeight', 'writingtype':'writingType'}
+    if recognizedOptions.get(option[:option.find('=') ], -1) != -1:
+        optionName = recognizedOptions.get(option[:option.find('=') ] )
+        option = optionName + option[option.find('='): ]
+    else:
+        raise RuntimeError('The option ' + input + ' was not recognized. If this is a valid option that you should be able to change please let me know and I will update the program. Otherwise, you have mispelled that option. Check it out and fix that.\n')
+    return option
+
 def printExtraFilePrimerMaterial(language):
     with open(os.path.join(os.path.dirname(os.path.abspath(__file__) ), 'CypherLibrary/' + language + '/encodedTextPrimerFile.txt'), 'r' ) as x:
         return x.read()

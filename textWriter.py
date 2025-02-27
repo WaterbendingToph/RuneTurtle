@@ -9,19 +9,20 @@ import textWriterHelper
         Figure out how to make the flags in each letter file to check for and how to pick up on em to in order to pull in letters
         Implement reading in all the non-letter bits of each language as appropriate -> ( and ), etc. + error throwing 4 illegal characters
         Related but make numbers go to number system selected if not covered by language
+        Make a number system being specified only if there is no numbers in the language chosen. Make this not cause issues in other areas like the check to make options uniform and everywhere the options are passed around to something else
         Find a more effective way to center all letters both in height and width
         \_>Update the starting code that gets ignored in all files (of each language as read in) to include lower borders
          \_>Then, update those same letter files to center the drawn text within the box, and to stay in the damn box to begin with!
           \_>Could then or in a later update all about efficiency trim down on the number of commands by using more efficient ones to trim down on runtime by decresasing read in and write out amounts
         Allow Flux Judonese to write in its other directions using the direction optional argument and variable - letters will handle directional change on their end 4 writing specifics
         Make the 'hidden' letters of languages accessible: letters with dots and whitespace of Artemis Fowl, end quotes of GreenRune and Alienese
-        Make the options fed to this program case insensitive and not requiring camelCase -> with a helper function
         Plan out how to implement CCGallifreyan and Circular Gallifreyan letters so they can be read in
         \_>Requires planning algo 4 word-by-word languages so it's readable and executable
          |\_>GreenRune will use its own algorithm
          \_>Requires planning 4 reset code. Maybe with knowing min & max radii from center, direction to it & available arc length?
         Write up Doc on how to add new language as it stands & update as new complexities are added 
         \_>Just know that it'll be updated when arguments are case-insensitive and word-by-word languages are added
+         \_>Include section about new arguments where you need to add a bit to textWriterHelper.makeOptionsUniform() and maybe textWriterHelper.setupStartingEnvironment() too
         
 '''
 #   READ IN THE STUFF TO TRANSLATE
@@ -55,6 +56,7 @@ if len(sys.argv) > 5:
             argument = argument.removeprefix('-')
         if argument.count('=') == 0 or not (argument.find('=') > 0 and argument.find('=') < len(argument) - 1):
             raise RuntimeError('You have entered more than 5 arguments. This should only be done while specifying options, and every one of them should follow the format of "optionName=optionValue". Leading hyphens get ignored, any option not named in camelCase will be ignored, and they must be specified in this name=value format.\n')
+        uniformOption = textWriterHelper.makeOptionUniform(argument)
         specifiedOptions.update( {argument[:argument.find('=') ] : int(argument[argument.find('=') + 1: ] ) } )
 
 
