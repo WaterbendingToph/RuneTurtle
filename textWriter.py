@@ -6,14 +6,12 @@ import textWriterHelper
         Setup input UI & whatnot to manually make it run whatever input text ya like
         Change how the letters are displayed to make lines of text (at first in only english's way, designed to be changable for languages with other directions of reading)
         \_>Implement multiple ways to spread out the text across these lines -> New line on punctuation, new line @ end of words 4 balanced letter count across them, specify num lines, all one line, break in words or not
-        Figure out how to make the flags in each letter file to check for and how to pick up on em to in order to pull in letters
         Implement reading in all the non-letter bits of each language as appropriate -> ( and ), etc. + error throwing 4 illegal characters
         Related but make numbers go to number system selected if not covered by language
         Make a number system being specified only if there is no numbers in the language chosen. Make this not cause issues in other areas like the check to make options uniform and everywhere the options are passed around to something else
         Find a more effective way to center all letters both in height and width
-        \_>Update the starting code that gets ignored in all files (of each language as read in) to include lower borders
-         \_>Then, update those same letter files to center the drawn text within the box, and to stay in the damn box to begin with!
-          \_>Could then or in a later update all about efficiency trim down on the number of commands by using more efficient ones to trim down on runtime by decresasing read in and write out amounts
+        \_>Update the test code in all GreenRune letters to have vertical (on the sides) borders and be followed by all letters in that language for letterHeight = maximum for letterWidth
+         \_>Could then or in a later update all about efficiency trim down on the number of commands by using more efficient ones to trim down on runtime by decresasing read in and write out amounts
         Allow Flux Judonese to write in its other directions using the direction optional argument and variable - letters will handle directional change on their end 4 writing specifics
         Make the 'hidden' letters of languages accessible: letters with dots and whitespace of Artemis Fowl, end quotes of GreenRune and Alienese
         Plan out how to implement CCGallifreyan and Circular Gallifreyan letters so they can be read in
@@ -23,7 +21,7 @@ import textWriterHelper
         Write up Doc on how to add new language as it stands & update as new complexities are added 
         \_>Just know that it'll be updated when arguments are case-insensitive and word-by-word languages are added
          \_>Include section about new arguments where you need to add a bit to textWriterHelper.makeOptionsUniform() and maybe textWriterHelper.setupStartingEnvironment() too
-        
+        Implement writing in Artemis Fowl's Gnomish since that library is filled out
 '''
 #   READ IN THE STUFF TO TRANSLATE
 if len(sys.argv) <= 3:
