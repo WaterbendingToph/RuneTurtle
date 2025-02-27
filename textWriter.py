@@ -5,18 +5,24 @@ import textWriterHelper
         Decide on standardized test suite to run through this program (to implement for easy testing later) to check with all major tests and before pushes
         Setup input UI & whatnot to manually make it run whatever input text ya like
         Change how the letters are displayed to make lines of text (at first in only english's way, designed to be changable for languages with other directions of reading)
+        \_>Implement multiple ways to spread out the text across these lines -> New line on punctuation, new line @ end of words 4 balanced letter count across them, specify num lines, all one line, break in words or not
         Figure out how to make the flags in each letter file to check for and how to pick up on em to in order to pull in letters
         Implement reading in all the non-letter bits of each language as appropriate -> ( and ), etc. + error throwing 4 illegal characters
         Related but make numbers go to number system selected if not covered by language
         Find a more effective way to center all letters both in height and width
-        |_>Update the starting code that gets ignored in all files (of each language as read in) to include lower borders
-        |_>Then, update those same letter files to center the drawn text within the box, and to stay in the damn box to begin with!
-        |_>Could then or in a later update all about efficiency trim down on the number of commands by using more efficient ones to trim down on runtime by decresasing read in and write out amounts
-        Make it so you can put in the language w/out precisely matching capitalization of the file structure for that language (changes to getCodeForLetter() )
-        Pull out the language check everywhere to use function 2 return an enum @ startup
+        \_>Update the starting code that gets ignored in all files (of each language as read in) to include lower borders
+         \_>Then, update those same letter files to center the drawn text within the box, and to stay in the damn box to begin with!
+          \_>Could then or in a later update all about efficiency trim down on the number of commands by using more efficient ones to trim down on runtime by decresasing read in and write out amounts
         Allow Flux Judonese to write in its other directions using the direction optional argument and variable - letters will handle directional change on their end 4 writing specifics
         Make the 'hidden' letters of languages accessible: letters with dots and whitespace of Artemis Fowl, end quotes of GreenRune and Alienese
-        Make the options fed to this program case insensitive and not requiring camelCase
+        Make the options fed to this program case insensitive and not requiring camelCase -> with a helper function
+        Plan out how to implement CCGallifreyan and Circular Gallifreyan letters so they can be read in
+        \_>Requires planning algo 4 word-by-word languages so it's readable and executable
+         |\_>GreenRune will use its own algorithm
+         \_>Requires planning 4 reset code. Maybe with knowing min & max radii from center, direction to it & available arc length?
+        Write up Doc on how to add new language as it stands & update as new complexities are added 
+        \_>Just know that it'll be updated when arguments are case-insensitive and word-by-word languages are added
+        
 '''
 #   READ IN THE STUFF TO TRANSLATE
 if len(sys.argv) <= 3:
